@@ -104,3 +104,18 @@
     background-color: var(--spt-success-base);
     border-color: var(--spt-success-dark);
 }
+
+.spt-form-delete-category-button {
+    padding: 0;
+    min-height: auto;
+    background-color: transparent;
+    border-color: transparent;
+    color: red;
+}
+
+.spt-form-delete-category-button:active,
+.spt-form-delete-category-button:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: #721c24;
+}

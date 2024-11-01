@@ -46,7 +46,36 @@ function renderListCategories(categories) {
             const newLiElement = document.createElement("li");
             newLiElement.textContent = category;
 
+            // Create delete button for each category
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "delete";
+            deleteButton.classList.add("spt-form-delete-category-button");
+
+            deleteButton.addEventListener("click", () => {
+                // Remove the associated category from all subscriptions
+                chrome.storage.sync.get(["channelCategoryAssigned"], ({ channelCategoryAssigned }) => {
+                    Object.keys(channelCategoryAssigned).forEach((channel) => {
+                        if (channelCategoryAssigned[channel] === category) {
+                            delete channelCategoryAssigned[channel];
+                        }
+                    });
+
+                    chrome.storage.sync.set({ channelCategoryAssigned });
+                });
+
+                // Remove the category from the list
+                chrome.storage.sync.get(["categories"], ({ categories }) => {
+                    const newCategories = categories.filter((c) => c !== category);
+
+                    chrome.storage.sync.set({ categories: newCategories }, () => {
+                        renderAlertMessage(`Category "${category}" deleted successfully!`);
+                        renderListCategories(newCategories);
+                    });
+                });
+            });
+
             // Append elements
+            newLiElement.appendChild(deleteButton);
             categoriesList.appendChild(newLiElement);
         });
 }
