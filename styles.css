@@ -1,0 +1,81 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+:root {
+    --spt-white: #fff;
+    --spt-black: #333;
+    --spt-gray-lighter: #f9f9f9;
+    --spt-gray-light: #b1b1b1;
+    --spt-gray: #7e7e7e;
+    --spt-gray-dark: #494949;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--spt-gray-lighter);
+    color: var(--spt-black);
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 16px;
+}
+
+h1 {
+    margin: 0;
+    padding: 1rem 0;
+}
+
+h2 {
+    margin: 0;
+    padding: 0.8rem 0;
+}
+
+h3,
+h4 {
+    margin: 0;
+    padding: 0.6rem 0;
+}
+
+h5,
+h6 {
+    margin: 0;
+    padding: 0.4rem 0;
+}
+
+label {
+    display: block;
+    margin: 0.5rem 0;
+}
+
+select,
+input[type="text"] {
+    min-height: 2.4rem;
+    min-width: 20rem;
+    padding: 0.5rem;
+    background-color: var(--spt-white);
+    border-radius: 0.2rem;
+    border: 1px solid var(--spt-gray-dark);
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+button {
+    display: inline-block;
+    min-height: 2.4rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-color: var(--spt-gray-light);
+    border-radius: 0.2rem;
+    border: 1px solid var(--spt-gray);
+    color: var(--spt-white);
+}
+
+button:active,
+button:hover {
+    background-color: var(--spt-black);
+    border-color: var(--spt-gray);
+}

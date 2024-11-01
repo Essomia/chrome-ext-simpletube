@@ -1,0 +1,82 @@
+:root {
+    --spt-brand-ytb-color: #f30a33;
+    --spt-brand-note: #7e7e7e;
+    --spt-success-light: #ccf2b1;
+    --spt-success-base: #4d9b4f;
+    --spt-success-dark: #3b573c;
+    --spt-error-light: #f8d7da;
+    --spt-error-dark: #721c24;
+}
+
+.spt-brand-color {
+    color: var(--spt-brand-ytb-color);
+}
+
+.spt-brand-version {
+    color: var(--spt-brand-note);
+}
+
+/* Content */
+
+.spt-opt-content-wrapper {
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100vw;
+}
+
+@media (min-width: 768px) {
+    .spt-opt-content-wrapper {
+        width: 50vw;
+    }
+}
+
+.spt-opt-content-section {
+    padding-bottom: 1rem;
+}
+
+.spt-opt-description {
+    margin: 0;
+    padding: 0 0 1rem;
+    font-style: italic;
+}
+
+/* Alert Message */
+
+.spt-opt-alert-message {
+    display: block;
+    padding: 1rem;
+    min-height: 1rem;
+    opacity: 0;
+}
+
+.spt-opt-alert-message.spt-success {
+    opacity: 1;
+    background-color: var(--spt-success-light);
+    color: var(--spt-success-dark);
+}
+
+.spt-opt-alert-message.spt-error {
+    opacity: 1;
+    background-color: var(--spt-error-light);
+    color: var(--spt-error-dark);
+}
+
+/* Forms Label */
+
+.spt-form-option-label {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.spt-opt-default-info {
+    margin-left: 0.5rem;
+    color: var(--spt-brand-note);
+    font-size: 0.8em;
+}
+
+/* Forms Buttons */
+
+.spt-form-save-button {
+    background-color: var(--spt-success-base);
+    border-color: var(--spt-success-dark);
+}
