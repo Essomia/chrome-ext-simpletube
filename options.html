@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SimpleTube - YouTube Filters & Subscriptions Manager</title>
+    </head>
+    <body>
+        <main class="spt-opt-content-wrapper">
+            <h1>
+                <span class="spt-brand-color">SimpleTube</span>
+                <span id="sptdt-version" class="spt-brand-version"></span>
+                - YouTube Filters & Subscriptions Manager
+            </h1>
+
+            <!-- MESSAGE -->
+            <div id="sptdt-alert-message" class="spt-opt-alert-message"></div>
+
+            <!-- OPTIONS: Video Length Filter -->
+            <div class="spt-opt-content-section">
+                <h2>Video Length Filter</h2>
+                <p class="spt-opt-description">
+                    Videos within the selected range will have reduced opacity
+                    on listing views.
+                </p>
+
+                <label
+                    for="sptdt-do-fade-by-length"
+                    class="spt-form-option-label"
+                >
+                    <input type="checkbox" id="sptdt-do-fade-by-length" />
+                    Enable filter by video length
+                    <span class="spt-opt-default-info">(Default: true)</span>
+                </label>
+
+                <label
+                    for="sptdt-video-length-min"
+                    class="spt-form-option-label"
+                >
+                    Select minimum video length:
+                    <span class="spt-opt-default-info"
+                        >(Default: 0 minutes)</span
+                    >
+                </label>
+                <select
+                    id="sptdt-video-length-min"
+                    class="spt-form-select-input"
+                >
+                    <option value="0">0 minutes</option>
+                    <option value="5">5 minutes</option>
+                    <option value="10">10 minutes</option>
+                    <option value="20">20 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="40">40 minutes</option>
+                    <option value="50">50 minutes</option>
+                    <option value="60">1 hour</option>
+                    <option value="90">1 hour 30 minutes</option>
+                    <option value="120">2 hours</option>
+                </select>
+
+                <label
+                    for="sptdt-video-length-max"
+                    class="spt-form-option-label"
+                >
+                    Select maximum video length:
+                    <span class="spt-opt-default-info"
+                        >(Default: 30 minutes)</span
+                    >
+                </label>
+                <select
+                    id="sptdt-video-length-max"
+                    class="spt-form-select-input"
+                >
+                    <option value="5">5 minutes</option>
+                    <option value="10">10 minutes</option>
+                    <option value="20">20 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="40">40 minutes</option>
+                    <option value="50">50 minutes</option>
+                    <option value="60">1 hour</option>
+                    <option value="90">1 hour 30 minutes</option>
+                    <option value="120">2 hours</option>
+                </select>
+            </div>
+
+            <!-- SAVE -->
+            <button id="sptdt-settings-save" class="spt-form-save-button">
+                Save Settings
+            </button>
+        </main>
+
+        <script src="options.js"></script>
+    </body>
+</html>
