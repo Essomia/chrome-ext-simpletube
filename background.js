@@ -11,6 +11,10 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
     if (reason === "install") {
         // Set the default upon installation
         chrome.storage.sync.set({
+            // General Options
+            doHideShorts: false, // Default: do not hide shorts section
+            doHideWatched: false, // Default: do not fade watched videos
+
             // Video Length
             doFadeByLength: true, // Default: enable filter by video length
             videoLengthMin: 0, // Default: minimum length 0 minutes

@@ -28,6 +28,12 @@ function renderAlertMessage(message, error = false) {
  * Event Click: Save Settings
  */
 document.getElementById("sptdt-settings-save").addEventListener("click", () => {
+    // Get the value of the hide shorts checkbox
+    const hideShorts = document.getElementById("sptdt-do-hide-shorts").checked;
+
+    // Get the value of the hide watched checkbox
+    const hideWatched = document.getElementById("sptdt-do-hide-watched").checked;
+
     // Get the value of the filter by length checkbox
     const fadeByLength = document.getElementById("sptdt-do-fade-by-length").checked;
 
@@ -54,6 +60,8 @@ document.getElementById("sptdt-settings-save").addEventListener("click", () => {
     // Save the settings to Chrome's storage
     chrome.storage.sync.set(
         {
+            doHideShorts: hideShorts,
+            doHideWatched: hideWatched,
             doFadeByLength: fadeByLength,
             videoLengthMax: videoLengthMax,
             videoLengthMin: videoLengthMin,
@@ -69,8 +77,11 @@ document.getElementById("sptdt-settings-save").addEventListener("click", () => {
  */
 document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.sync.get(
-        ["doFadeByLength", "videoLengthMax", "videoLengthMin"],
-        ({ doFadeByLength, videoLengthMax, videoLengthMin }) => {
+        ["doHideShorts", "doHideWatched", "doFadeByLength", "videoLengthMax", "videoLengthMin"],
+        ({ doHideShorts, doHideWatched, doFadeByLength, videoLengthMax, videoLengthMin }) => {
+            document.getElementById("sptdt-do-hide-watched").checked = doHideWatched;
+            document.getElementById("sptdt-do-hide-shorts").checked = doHideShorts;
+
             document.getElementById("sptdt-do-fade-by-length").checked = doFadeByLength;
             document.getElementById("sptdt-video-length-min").value = videoLengthMin;
             document.getElementById("sptdt-video-length-max").value = videoLengthMax;
