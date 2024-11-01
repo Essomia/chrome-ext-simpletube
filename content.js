@@ -4,8 +4,38 @@
  */
 
 chrome.storage.sync.get(
-    ["doFadeByLength", "videoLengthMax", "videoLengthMin"],
-    ({ doFadeByLength, videoLengthMax, videoLengthMin }) => {
+    ["doHideShorts", "doHideWatched", "doFadeByLength", "videoLengthMax", "videoLengthMin"],
+    ({ doHideShorts, doHideWatched, doFadeByLength, videoLengthMax, videoLengthMin }) => {
+        /**
+         * General Options
+         */
+
+        // Hide watched videos (if the option is enabled)
+        const hideWatchedVideos = () => {
+            if (doHideWatched) {
+                const videoElements = document.querySelectorAll("ytd-rich-item-renderer");
+
+                videoElements.forEach((video) => {
+                    const progressBar = video.querySelector("ytd-thumbnail-overlay-resume-playback-renderer");
+
+                    if (progressBar) {
+                        video.style.display = "none";
+                    }
+                });
+            }
+        };
+
+        // Hide shorts sections (if the option is enabled)
+        const hideShortsSections = () => {
+            if (doHideShorts) {
+                const shortsSections = document.querySelectorAll("ytd-rich-shelf-renderer[is-shorts]");
+
+                shortsSections.forEach((shorts) => {
+                    shorts.style.display = "none";
+                });
+            }
+        };
+
         /**
          * Video Length Filter
          */
@@ -48,10 +78,14 @@ chrome.storage.sync.get(
          * Initialize filters
          */
 
+        hideWatchedVideos();
+        hideShortsSections();
         filterVideos();
 
         // Re-apply the filter every 5 seconds to handle dynamic content loading on YouTube
         setInterval(() => {
+            hideWatchedVideos();
+            hideShortsSections();
             filterVideos();
         }, 5000);
     }
