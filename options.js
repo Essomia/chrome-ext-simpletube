@@ -24,6 +24,33 @@ function renderAlertMessage(message, error = false) {
     }, 5000);
 }
 
+function renderListCategories(categories) {
+    const categoriesList = document.getElementById("sptdt-categories-list");
+    categoriesList.innerHTML = "";
+
+    // If there are no categories, show a message
+    if (categories.length === 0) {
+        const emptyLiElement = document.createElement("li");
+        emptyLiElement.textContent = "No categories added yet!";
+        emptyLiElement.classList.add("spt-empty-item");
+
+        categoriesList.appendChild(emptyLiElement);
+        return;
+    }
+
+    // Sort and render categories with delete button
+    categories
+        .sort((a, b) => a.localeCompare(b))
+        .forEach((category) => {
+            // Create list item for each category
+            const newLiElement = document.createElement("li");
+            newLiElement.textContent = category;
+
+            // Append elements
+            categoriesList.appendChild(newLiElement);
+        });
+}
+
 /**
  * Event Click: Save Settings
  */
@@ -40,6 +67,9 @@ document.getElementById("sptdt-settings-save").addEventListener("click", () => {
     // Get the selected video length values from the dropdowns
     const videoLengthMin = parseInt(document.getElementById("sptdt-video-length-min").value, 10);
     const videoLengthMax = parseInt(document.getElementById("sptdt-video-length-max").value, 10);
+
+    // Get the value of the filter  subscription by category checkbox
+    const categorizeSubscription = document.getElementById("sptdt-do-categorize-subscription").checked;
 
     // Check if the input is NOT a valid number or a negative
     if (
@@ -65,11 +95,33 @@ document.getElementById("sptdt-settings-save").addEventListener("click", () => {
             doFadeByLength: fadeByLength,
             videoLengthMax: videoLengthMax,
             videoLengthMin: videoLengthMin,
+            doCategorizeSubscription: categorizeSubscription,
         },
         () => {
             renderAlertMessage(`Settings updated successfully!`);
         }
     );
+});
+
+/**
+ * Event Click: Add Category
+ */
+document.getElementById("sptdt-category-add").addEventListener("click", () => {
+    const categoryName = document.getElementById("sptdt-category-name").value.trim();
+
+    if (categoryName) {
+        chrome.storage.sync.get(["categories"], ({ categories }) => {
+            if (!categories.includes(categoryName)) {
+                categories.push(categoryName);
+                document.getElementById("sptdt-category-name").value = "";
+
+                chrome.storage.sync.set({ categories }, () => {
+                    renderAlertMessage(`Category "${categoryName}" added successfully!`);
+                    renderListCategories(categories);
+                });
+            }
+        });
+    }
 });
 
 /**
@@ -84,6 +136,8 @@ document.getElementById("sptdt-settings-reset").addEventListener("click", () => 
     document.getElementById("sptdt-video-length-min").value = 0;
     document.getElementById("sptdt-video-length-max").value = 30;
 
+    document.getElementById("sptdt-do-categorize-subscription").checked = true;
+
     // Save the settings to Chrome's storage
     chrome.storage.sync.set(
         {
@@ -94,6 +148,8 @@ document.getElementById("sptdt-settings-reset").addEventListener("click", () => 
             doFadeByLength: true,
             videoLengthMin: 0,
             videoLengthMax: 30,
+            // Subscriptions Categories
+            doCategorizeSubscription: true,
         },
         () => {
             renderAlertMessage(`Settings has been reset to default!`);
@@ -106,16 +162,29 @@ document.getElementById("sptdt-settings-reset").addEventListener("click", () => 
  */
 document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.sync.get(
-        ["doHideShorts", "doHideWatched", "doFadeByLength", "videoLengthMax", "videoLengthMin"],
-        ({ doHideShorts, doHideWatched, doFadeByLength, videoLengthMax, videoLengthMin }) => {
+        [
+            "doHideShorts",
+            "doHideWatched",
+            "doFadeByLength",
+            "videoLengthMax",
+            "videoLengthMin",
+            "doCategorizeSubscription",
+        ],
+        ({ doHideShorts, doHideWatched, doFadeByLength, videoLengthMax, videoLengthMin, doCategorizeSubscription }) => {
             document.getElementById("sptdt-do-hide-watched").checked = doHideWatched;
             document.getElementById("sptdt-do-hide-shorts").checked = doHideShorts;
 
             document.getElementById("sptdt-do-fade-by-length").checked = doFadeByLength;
             document.getElementById("sptdt-video-length-min").value = videoLengthMin;
             document.getElementById("sptdt-video-length-max").value = videoLengthMax;
+
+            document.getElementById("sptdt-do-categorize-subscription").checked = doCategorizeSubscription;
         }
     );
+
+    chrome.storage.sync.get(["categories"], ({ categories }) => {
+        renderListCategories(categories);
+    });
 });
 
 /**

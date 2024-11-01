@@ -61,6 +61,30 @@
     color: var(--spt-error-dark);
 }
 
+/* Categories Listing */
+
+.spt-opt-list-categories {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.spt-opt-list-categories li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.2rem;
+    padding: 0.5rem 1rem;
+    background: #ffffff;
+    border: 1px solid #eee;
+}
+
+.spt-opt-list-categories li.spt-empty-item {
+    display: block;
+    color: var(--spt-brand-note);
+    font-style: italic;
+    text-align: center;
+}
+
 /* Forms Label */
 
 .spt-form-option-label {

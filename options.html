@@ -107,6 +107,47 @@
                 </select>
             </div>
 
+            <!-- OPTIONS: Subscription Categories Manager -->
+            <div class="spt-opt-content-section">
+                <h2>Subscription Categories Filter</h2>
+                <p class="spt-opt-description">
+                    Organize your channel subscriptions into categories. Each
+                    category will be shown on the subscription page (only) to
+                    allow video filtering.
+                </p>
+
+                <label
+                    for="sptdt-do-categorize-subscription"
+                    class="spt-form-option-label"
+                >
+                    <input
+                        type="checkbox"
+                        id="sptdt-do-categorize-subscription"
+                    />
+                    Enable filter by category on the subscription page
+                    <span class="spt-opt-default-info">(Default: false)</span>
+                </label>
+
+                <label for="sptdt-category-name" class="spt-form-option-label">
+                    Category name:
+                </label>
+                <input
+                    type="text"
+                    id="sptdt-category-name"
+                    class="spt-form-text-input"
+                    placeholder="New category name"
+                />
+                <button id="sptdt-category-add" class="spt-form-add-button">
+                    Add Category
+                </button>
+
+                <p>List of categories:</p>
+                <ul
+                    id="sptdt-categories-list"
+                    class="spt-opt-list-categories"
+                ></ul>
+            </div>
+
             <!-- SAVE -->
             <button id="sptdt-settings-save" class="spt-form-save-button">
                 Save Settings
