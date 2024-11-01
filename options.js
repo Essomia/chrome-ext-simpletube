@@ -73,6 +73,35 @@ document.getElementById("sptdt-settings-save").addEventListener("click", () => {
 });
 
 /**
+ * Event Click: Reset Settings
+ */
+document.getElementById("sptdt-settings-reset").addEventListener("click", () => {
+    // Reset the settings to the default values
+    document.getElementById("sptdt-do-hide-watched").checked = false;
+    document.getElementById("sptdt-do-hide-shorts").checked = false;
+
+    document.getElementById("sptdt-do-fade-by-length").checked = true;
+    document.getElementById("sptdt-video-length-min").value = 0;
+    document.getElementById("sptdt-video-length-max").value = 30;
+
+    // Save the settings to Chrome's storage
+    chrome.storage.sync.set(
+        {
+            // General Options
+            doHideShorts: false,
+            doHideWatched: false,
+            // Video Length
+            doFadeByLength: true,
+            videoLengthMin: 0,
+            videoLengthMax: 30,
+        },
+        () => {
+            renderAlertMessage(`Settings has been reset to default!`);
+        }
+    );
+});
+
+/**
  * Event OnLoad : Set saved settings
  */
 document.addEventListener("DOMContentLoaded", () => {
