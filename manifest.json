@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "SimpleTube - YouTube Filters & Subscriptions Manager",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Filters for YouTube videos based on video length and subscriptions manager",
     "permissions": ["storage", "activeTab"],
     "background": {

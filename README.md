@@ -57,6 +57,30 @@ If you want to modify or contribute to this extension:
     - Select **Options** to open the settings page.
     - Configure your preferences for video length, Shorts, and watched videos.
 
+## History Log
+
+### Versions
+
+v0.2.0:
+
+    - feat: options - allow reset settings to default
+    - feat: content - hide shorts section and watched videos when option is checked
+    - feat: options - add option to hide shorts section and watched videos
+
+v0.1.0:
+
+    - chore: update background to avoid overriding options on update
+    - feat: options - add styles to the options page
+    - feat: content - fade video based on video length filter
+    - feat: options - create video length filter
+
+### Future Enhancements
+
+-   Create extension icon
+-   Add subscription filtering, such as by category
+-   Publish extension to chrome store
+-   Enhance performance by optimizing the way dynamic content is monitored on YouTube
+
 ## License
 
 This project is licensed under the MIT License.
