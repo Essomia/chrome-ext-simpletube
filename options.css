@@ -1,6 +1,8 @@
 :root {
     --spt-brand-ytb-color: #f30a33;
     --spt-brand-note: #7e7e7e;
+    --spt-link-default: #f30a33;
+    --spt-link-hover: #721c24;
     --spt-success-light: #ccf2b1;
     --spt-success-base: #4d9b4f;
     --spt-success-dark: #3b573c;
@@ -14,6 +16,16 @@
 
 .spt-brand-version {
     color: var(--spt-brand-note);
+}
+
+.spt-link {
+    color: var(--spt-link-default);
+    text-decoration: none;
+}
+
+.spt-link:active,
+.spt-link:hover {
+    color: var(--spt-link-hover);
 }
 
 /* Content */
@@ -38,6 +50,14 @@
     margin: 0;
     padding: 0 0 1rem;
     font-style: italic;
+}
+
+.stp-opt-additonal-info {
+    display: block;
+    margin: 0.25rem 1.6rem;
+    padding: 0;
+    font-size: 0.8em;
+    font-weight: normal;
 }
 
 /* Alert Message */
@@ -74,8 +94,8 @@
     justify-content: space-between;
     margin-bottom: 0.2rem;
     padding: 0.5rem 1rem;
-    background: #ffffff;
-    border: 1px solid #eee;
+    background: var(--spt-white);
+    border: 1px solid var(--spt-gray-light);
 }
 
 .spt-opt-list-categories li.spt-empty-item {
@@ -110,12 +130,12 @@
     min-height: auto;
     background-color: transparent;
     border-color: transparent;
-    color: red;
+    color: var(--spt-link-default);
 }
 
 .spt-form-delete-category-button:active,
 .spt-form-delete-category-button:hover {
     background-color: transparent;
     border-color: transparent;
-    color: #721c24;
+    color: var(--spt-link-hover);
 }

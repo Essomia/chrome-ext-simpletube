@@ -55,7 +55,7 @@ input[type="text"] {
     padding: 0.5rem;
     background-color: var(--spt-white);
     border-radius: 0.2rem;
-    border: 1px solid var(--spt-gray-dark);
+    border: 1px solid var(--spt-gray-light);
 }
 
 input[type="checkbox"] {

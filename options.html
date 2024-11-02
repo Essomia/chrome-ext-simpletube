@@ -20,7 +20,7 @@
             <div class="spt-opt-content-section">
                 <h2>General Options</h2>
                 <p class="spt-opt-description">
-                    Hide/Show specific section or element based on user
+                    Hide or show specific sections or elements based on user
                     preferences.
                 </p>
 
@@ -35,8 +35,11 @@
 
                 <label for="sptdt-do-hide-shorts" class="spt-form-option-label">
                     <input type="checkbox" id="sptdt-do-hide-shorts" />
-                    Hide 'Shorts' section
+                    Hide 'Shorts' section on pages
                     <span class="spt-opt-default-info">(Default: false)</span>
+                    <span class="stp-opt-additonal-info">
+                        we still display the 'Shorts' link in the menu
+                    </span>
                 </label>
             </div>
 
@@ -44,8 +47,8 @@
             <div class="spt-opt-content-section">
                 <h2>Video Length Filter</h2>
                 <p class="spt-opt-description">
-                    Videos within the selected range will have reduced opacity
-                    on listing views.
+                    Videos NOT within the selected range will appear with
+                    reduced opacity.
                 </p>
 
                 <label
@@ -111,9 +114,28 @@
             <div class="spt-opt-content-section">
                 <h2>Subscription Categories Filter</h2>
                 <p class="spt-opt-description">
-                    Organize your channel subscriptions into categories. Each
-                    category will be shown on the subscription page (only) to
-                    allow video filtering.
+                    Organize your channel subscriptions into categories.
+                    <br />
+                    Each category will be displayed at the top of your
+                    <a
+                        href="https://www.youtube.com/feed/subscriptions"
+                        target="_blank"
+                        class="spt-link"
+                    >
+                        subscriptions page
+                    </a>
+                    , allowing you to filter videos.
+                    <br />
+                    You can assign categories to your channel subscriptions on
+                    the
+                    <a
+                        href="https://www.youtube.com/feed/channels"
+                        target="_blank"
+                        class="spt-link"
+                    >
+                        subscriptions management page
+                    </a>
+                    .
                 </p>
 
                 <label
@@ -147,9 +169,14 @@
                     class="spt-opt-list-categories"
                 ></ul>
                 <p class="spt-opt-default-info">
-                    If you click on the 'delete' button, the category will be
-                    removed from the list and from all subscriptions that are
-                    associated with it.
+                    Clicking the 'delete' button will remove the category from
+                    the list and from all associated subscriptions.
+                </p>
+                <p class="spt-opt-default-info">
+                    Please note: for the time being, if you unsubscribe from a
+                    channel, the category will remain associated with it, unless
+                    you remove the category manually before unsubscribing. I'm
+                    working on a fix for this for the next version.
                 </p>
             </div>
 
