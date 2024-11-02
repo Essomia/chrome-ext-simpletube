@@ -23,6 +23,7 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
             // Subscriptions Categories
             doCategorizeSubscription: false, // Default: disable categorize subscriptions
             categories: [], // Default: set default categories
+            channelCategoryAssigned: {}, // Default: no categories assigned
         });
 
         // Open the options page
