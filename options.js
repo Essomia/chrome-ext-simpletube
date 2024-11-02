@@ -21,7 +21,7 @@ function renderAlertMessage(message, error = false) {
     renderAlertMessage.timeoutId = setTimeout(() => {
         messageElement.classList.remove("spt-error", "spt-success");
         messageElement.textContent = "";
-    }, 5000);
+    }, 3000);
 }
 
 function renderListCategories(categories) {

@@ -79,7 +79,7 @@ chrome.storage.sync.get(
                 if (window.location.pathname === "/feed/channels") {
                     renderCategoryDropdown();
                 }
-            }, 5000);
+            }, 3000);
         }
     }
 );

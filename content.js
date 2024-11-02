@@ -87,6 +87,6 @@ chrome.storage.sync.get(
             hideWatchedVideos();
             hideShortsSections();
             filterVideos();
-        }, 5000);
+        }, 3000);
     }
 );
