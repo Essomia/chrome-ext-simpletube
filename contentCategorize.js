@@ -71,6 +71,41 @@ chrome.storage.sync.get(
         };
 
         /**
+         * Category Filter on Subscriptions Page
+         */
+
+        const renderSubscriptionsFilter = () => {
+            // Get DOM elements
+            const primaryContainerEl = document.querySelectorAll("#primary")[0];
+
+            // If filters already exist, skip
+            if (primaryContainerEl.querySelectorAll(".spt-category-filter-container").length > 0) return;
+
+            // Create the filters container
+            const filterContainerEl = document.createElement("div");
+            filterContainerEl.classList.add("spt-category-filter-container");
+
+            // Create a clear filter button (to show all videos)
+            const clearFilterButtonEl = document.createElement("span");
+            clearFilterButtonEl.textContent = "Clear Filter";
+            clearFilterButtonEl.classList.add("spt-category-filter-button");
+
+            filterContainerEl.appendChild(clearFilterButtonEl);
+
+            // Create each category as a filter button
+            categories.forEach((category) => {
+                const buttonEl = document.createElement("span");
+                buttonEl.textContent = category;
+                buttonEl.classList.add("spt-category-filter-button");
+
+                filterContainerEl.appendChild(buttonEl);
+            });
+
+            // Append the filters to the primary container
+            primaryContainerEl.prepend(filterContainerEl);
+        };
+
+        /**
          * Initialize filters
          */
 
@@ -78,6 +113,10 @@ chrome.storage.sync.get(
             setInterval(() => {
                 if (window.location.pathname === "/feed/channels") {
                     renderCategoryDropdown();
+                }
+
+                if (window.location.pathname === "/feed/subscriptions") {
+                    renderSubscriptionsFilter();
                 }
             }, 3000);
         }
