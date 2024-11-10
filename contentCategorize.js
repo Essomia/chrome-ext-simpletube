@@ -90,6 +90,18 @@ chrome.storage.sync.get(
             clearFilterButtonEl.textContent = "Clear Filter";
             clearFilterButtonEl.classList.add("spt-category-filter-button");
 
+            clearFilterButtonEl.addEventListener("click", () => {
+                // Show all videos
+                document.querySelectorAll("ytd-rich-item-renderer").forEach((video) => {
+                    video.style.display = "";
+                });
+
+                // Remove the data-active attribute from all buttons
+                document.querySelectorAll(".spt-category-filter-button").forEach((btn) => {
+                    btn.removeAttribute("data-active");
+                });
+            });
+
             filterContainerEl.appendChild(clearFilterButtonEl);
 
             // Create each category as a filter button
@@ -97,6 +109,39 @@ chrome.storage.sync.get(
                 const buttonEl = document.createElement("span");
                 buttonEl.textContent = category;
                 buttonEl.classList.add("spt-category-filter-button");
+
+                buttonEl.addEventListener("click", () => {
+                    // Filter videos by selected category
+                    const filterVideos = () => {
+                        document.querySelectorAll("ytd-rich-item-renderer").forEach((video) => {
+                            const channelNameEl = video.querySelector("#channel-name .ytd-channel-name a");
+                            const channelName = channelNameEl ? channelNameEl.textContent.trim() : "";
+
+                            if (channelCategoryAssigned[channelName] === category) {
+                                video.style.display = "";
+                            } else {
+                                video.style.display = "none";
+                            }
+                        });
+                    };
+
+                    // Initial filtering
+                    filterVideos();
+
+                    // Add an attribute data-active="true" to the selected filter
+                    document.querySelectorAll(".spt-category-filter-button").forEach((btn) => {
+                        btn.removeAttribute("data-active");
+                    });
+
+                    buttonEl.setAttribute("data-active", "true");
+
+                    // Set up a mutation observer to handle dynamically loaded content
+                    const observer = new MutationObserver(() => {
+                        filterVideos();
+                    });
+
+                    observer.observe(document.querySelector("#contents"), { childList: true, subtree: true });
+                });
 
                 filterContainerEl.appendChild(buttonEl);
             });
