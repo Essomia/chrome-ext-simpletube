@@ -4,7 +4,7 @@
  */
 
 function renderAlertMessage(message, error = false) {
-    const messageElement = document.getElementById("sptdt-alert-message");
+    const messageElement = document.getElementById("sptid-alert-message");
     messageElement.classList.remove("spt-error", "spt-success");
 
     messageElement.textContent = message;
@@ -25,7 +25,7 @@ function renderAlertMessage(message, error = false) {
 }
 
 function renderListCategories(categories) {
-    const categoriesList = document.getElementById("sptdt-categories-list");
+    const categoriesList = document.getElementById("sptid-categories-list");
     categoriesList.innerHTML = "";
 
     // If there are no categories, show a message
@@ -83,22 +83,22 @@ function renderListCategories(categories) {
 /**
  * Event Click: Save Settings
  */
-document.getElementById("sptdt-settings-save").addEventListener("click", () => {
+document.getElementById("sptid-settings-save").addEventListener("click", () => {
     // Get the value of the hide shorts checkbox
-    const hideShorts = document.getElementById("sptdt-do-hide-shorts").checked;
+    const hideShorts = document.getElementById("sptid-do-hide-shorts").checked;
 
     // Get the value of the hide watched checkbox
-    const hideWatched = document.getElementById("sptdt-do-hide-watched").checked;
+    const hideWatched = document.getElementById("sptid-do-hide-watched").checked;
 
     // Get the value of the filter by length checkbox
-    const fadeByLength = document.getElementById("sptdt-do-fade-by-length").checked;
+    const fadeByLength = document.getElementById("sptid-do-fade-by-length").checked;
 
     // Get the selected video length values from the dropdowns
-    const videoLengthMin = parseInt(document.getElementById("sptdt-video-length-min").value, 10);
-    const videoLengthMax = parseInt(document.getElementById("sptdt-video-length-max").value, 10);
+    const videoLengthMin = parseInt(document.getElementById("sptid-video-length-min").value, 10);
+    const videoLengthMax = parseInt(document.getElementById("sptid-video-length-max").value, 10);
 
     // Get the value of the filter  subscription by category checkbox
-    const categorizeSubscription = document.getElementById("sptdt-do-categorize-subscription").checked;
+    const categorizeSubscription = document.getElementById("sptid-do-categorize-subscription").checked;
 
     // Check if the input is NOT a valid number or a negative
     if (
@@ -135,14 +135,14 @@ document.getElementById("sptdt-settings-save").addEventListener("click", () => {
 /**
  * Event Click: Add Category
  */
-document.getElementById("sptdt-category-add").addEventListener("click", () => {
-    const categoryName = document.getElementById("sptdt-category-name").value.trim();
+document.getElementById("sptid-category-add").addEventListener("click", () => {
+    const categoryName = document.getElementById("sptid-category-name").value.trim();
 
     if (categoryName) {
         chrome.storage.sync.get(["categories"], ({ categories }) => {
             if (!categories.includes(categoryName)) {
                 categories.push(categoryName);
-                document.getElementById("sptdt-category-name").value = "";
+                document.getElementById("sptid-category-name").value = "";
 
                 chrome.storage.sync.set({ categories }, () => {
                     renderAlertMessage(`Category "${categoryName}" added successfully!`);
@@ -156,16 +156,16 @@ document.getElementById("sptdt-category-add").addEventListener("click", () => {
 /**
  * Event Click: Reset Settings
  */
-document.getElementById("sptdt-settings-reset").addEventListener("click", () => {
+document.getElementById("sptid-settings-reset").addEventListener("click", () => {
     // Reset the settings to the default values
-    document.getElementById("sptdt-do-hide-watched").checked = false;
-    document.getElementById("sptdt-do-hide-shorts").checked = false;
+    document.getElementById("sptid-do-hide-watched").checked = false;
+    document.getElementById("sptid-do-hide-shorts").checked = false;
 
-    document.getElementById("sptdt-do-fade-by-length").checked = true;
-    document.getElementById("sptdt-video-length-min").value = 0;
-    document.getElementById("sptdt-video-length-max").value = 30;
+    document.getElementById("sptid-do-fade-by-length").checked = true;
+    document.getElementById("sptid-video-length-min").value = 0;
+    document.getElementById("sptid-video-length-max").value = 30;
 
-    document.getElementById("sptdt-do-categorize-subscription").checked = true;
+    document.getElementById("sptid-do-categorize-subscription").checked = true;
 
     // Save the settings to Chrome's storage
     chrome.storage.sync.set(
@@ -200,14 +200,14 @@ document.addEventListener("DOMContentLoaded", () => {
             "doCategorizeSubscription",
         ],
         ({ doHideShorts, doHideWatched, doFadeByLength, videoLengthMax, videoLengthMin, doCategorizeSubscription }) => {
-            document.getElementById("sptdt-do-hide-watched").checked = doHideWatched;
-            document.getElementById("sptdt-do-hide-shorts").checked = doHideShorts;
+            document.getElementById("sptid-do-hide-watched").checked = doHideWatched;
+            document.getElementById("sptid-do-hide-shorts").checked = doHideShorts;
 
-            document.getElementById("sptdt-do-fade-by-length").checked = doFadeByLength;
-            document.getElementById("sptdt-video-length-min").value = videoLengthMin;
-            document.getElementById("sptdt-video-length-max").value = videoLengthMax;
+            document.getElementById("sptid-do-fade-by-length").checked = doFadeByLength;
+            document.getElementById("sptid-video-length-min").value = videoLengthMin;
+            document.getElementById("sptid-video-length-max").value = videoLengthMax;
 
-            document.getElementById("sptdt-do-categorize-subscription").checked = doCategorizeSubscription;
+            document.getElementById("sptid-do-categorize-subscription").checked = doCategorizeSubscription;
         }
     );
 
@@ -220,6 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
  * Event OnLoad: Set version from manifest
  */
 document.addEventListener("DOMContentLoaded", () => {
-    const versionElement = document.getElementById("sptdt-version");
+    const versionElement = document.getElementById("sptid-version");
     versionElement.textContent = `v${chrome.runtime.getManifest().version}`;
 });
