@@ -12,7 +12,7 @@ chrome.storage.sync.get(
                 const chActionsContainerEl = chRenderer.querySelector("#buttons");
 
                 // If the dropdown already exists, skip
-                if (chActionsContainerEl.querySelectorAll(".spt-category-select").length > 0) return;
+                if (chActionsContainerEl.querySelectorAll(".sptcl-category-select").length > 0) return;
 
                 // Get channel name
                 const chNameEl = chRenderer.querySelector(".ytd-channel-name[title]");
@@ -20,12 +20,12 @@ chrome.storage.sync.get(
 
                 // Create the category dropdown
                 const selectEl = document.createElement("select");
-                selectEl.classList.add("spt-category-select");
+                selectEl.classList.add("sptcl-category-select");
 
                 // Create a default option
                 const defaultOptionEl = document.createElement("option");
                 defaultOptionEl.text = "Category";
-                defaultOptionEl.classList.add("spt-category-option");
+                defaultOptionEl.classList.add("sptcl-category-option");
 
                 selectEl.appendChild(defaultOptionEl);
 
@@ -34,7 +34,7 @@ chrome.storage.sync.get(
                     const optionEl = document.createElement("option");
                     optionEl.text = category;
                     optionEl.value = category;
-                    optionEl.classList.add("spt-category-option");
+                    optionEl.classList.add("sptcl-category-option");
 
                     // Set the selected option if the category is already assigned
                     if (channelCategoryAssigned[chName] === category) {
@@ -43,7 +43,7 @@ chrome.storage.sync.get(
 
                     // If we don't have any category assigned
                     if (!channelCategoryAssigned[chName]) {
-                        selectEl.classList.add("spt-category-no-selected");
+                        selectEl.classList.add("sptcl-category-no-selected");
                     }
 
                     selectEl.appendChild(optionEl);
@@ -54,11 +54,11 @@ chrome.storage.sync.get(
                     if (selectEl.value === "Category") {
                         // Remove the category from the assigned list if the default option is selected
                         delete channelCategoryAssigned[chName];
-                        selectEl.classList.add("spt-category-no-selected");
+                        selectEl.classList.add("sptcl-category-no-selected");
                     } else {
                         // Save the selected category
                         channelCategoryAssigned[chName] = selectEl.value;
-                        selectEl.classList.remove("spt-category-no-selected");
+                        selectEl.classList.remove("sptcl-category-no-selected");
                     }
 
                     // Save the updated assigned list to storage
@@ -79,16 +79,16 @@ chrome.storage.sync.get(
             const primaryContainerEl = document.querySelectorAll("#primary")[0];
 
             // If filters already exist, skip
-            if (primaryContainerEl.querySelectorAll(".spt-category-filter-container").length > 0) return;
+            if (primaryContainerEl.querySelectorAll(".sptcl-category-filter-container").length > 0) return;
 
             // Create the filters container
             const filterContainerEl = document.createElement("div");
-            filterContainerEl.classList.add("spt-category-filter-container");
+            filterContainerEl.classList.add("sptcl-category-filter-container");
 
             // Create a clear filter button (to show all videos)
             const clearFilterButtonEl = document.createElement("span");
             clearFilterButtonEl.textContent = "Clear Filter";
-            clearFilterButtonEl.classList.add("spt-category-filter-button");
+            clearFilterButtonEl.classList.add("sptcl-category-filter-button");
 
             clearFilterButtonEl.addEventListener("click", () => {
                 // Show all videos
@@ -97,7 +97,7 @@ chrome.storage.sync.get(
                 });
 
                 // Remove the data-active attribute from all buttons
-                document.querySelectorAll(".spt-category-filter-button").forEach((btn) => {
+                document.querySelectorAll(".sptcl-category-filter-button").forEach((btn) => {
                     btn.removeAttribute("data-active");
                 });
             });
@@ -108,7 +108,7 @@ chrome.storage.sync.get(
             categories.forEach((category) => {
                 const buttonEl = document.createElement("span");
                 buttonEl.textContent = category;
-                buttonEl.classList.add("spt-category-filter-button");
+                buttonEl.classList.add("sptcl-category-filter-button");
 
                 buttonEl.addEventListener("click", () => {
                     // Filter videos by selected category
@@ -129,7 +129,7 @@ chrome.storage.sync.get(
                     filterVideos();
 
                     // Add an attribute data-active="true" to the selected filter
-                    document.querySelectorAll(".spt-category-filter-button").forEach((btn) => {
+                    document.querySelectorAll(".sptcl-category-filter-button").forEach((btn) => {
                         btn.removeAttribute("data-active");
                     });
 

@@ -10,43 +10,43 @@
     --spt-error-dark: #721c24;
 }
 
-.spt-brand-color {
+.sptcl-brand-color {
     color: var(--spt-brand-ytb-color);
 }
 
-.spt-brand-version {
+.sptcl-brand-version {
     color: var(--spt-brand-note);
 }
 
-.spt-link {
+.sptcl-link {
     color: var(--spt-link-default);
     text-decoration: none;
 }
 
-.spt-link:active,
-.spt-link:hover {
+.sptcl-link:active,
+.sptcl-link:hover {
     color: var(--spt-link-hover);
 }
 
 /* Content */
 
-.spt-opt-content-wrapper {
+.sptcl-opt-content-wrapper {
     margin: 0 auto;
     padding: 1rem;
     width: 100vw;
 }
 
 @media (min-width: 768px) {
-    .spt-opt-content-wrapper {
+    .sptcl-opt-content-wrapper {
         width: 50vw;
     }
 }
 
-.spt-opt-content-section {
+.sptcl-opt-content-section {
     padding-bottom: 1rem;
 }
 
-.spt-opt-description {
+.sptcl-opt-description {
     margin: 0;
     padding: 0 0 1rem;
     font-style: italic;
@@ -62,20 +62,20 @@
 
 /* Alert Message */
 
-.spt-opt-alert-message {
+.sptcl-opt-alert-message {
     display: block;
     padding: 1rem;
     min-height: 1rem;
     opacity: 0;
 }
 
-.spt-opt-alert-message.spt-success {
+.sptcl-opt-alert-message.sptcl-success {
     opacity: 1;
     background-color: var(--spt-success-light);
     color: var(--spt-success-dark);
 }
 
-.spt-opt-alert-message.spt-error {
+.sptcl-opt-alert-message.sptcl-error {
     opacity: 1;
     background-color: var(--spt-error-light);
     color: var(--spt-error-dark);
@@ -83,13 +83,13 @@
 
 /* Categories Listing */
 
-.spt-opt-list-categories {
+.sptcl-opt-list-categories {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.spt-opt-list-categories li {
+.sptcl-opt-list-categories li {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.2rem;
@@ -99,7 +99,7 @@
     border: 1px solid var(--spt-gray-light);
 }
 
-.spt-opt-list-categories li.spt-empty-item {
+.sptcl-opt-list-categories li.sptcl-empty-item {
     display: block;
     color: var(--spt-brand-note);
     font-style: italic;
@@ -108,12 +108,12 @@
 
 /* Forms Label */
 
-.spt-form-option-label {
+.sptcl-form-option-label {
     cursor: pointer;
     font-weight: bold;
 }
 
-.spt-opt-default-info {
+.sptcl-opt-default-info {
     margin-left: 0.5rem;
     color: var(--spt-brand-note);
     font-size: 0.8em;
@@ -121,12 +121,12 @@
 
 /* Forms Buttons */
 
-.spt-form-save-button {
+.sptcl-form-save-button {
     background-color: var(--spt-success-base);
     border-color: var(--spt-success-dark);
 }
 
-.spt-form-delete-category-button {
+.sptcl-form-delete-category-button {
     padding: 0;
     min-height: auto;
     background-color: transparent;
@@ -134,8 +134,8 @@
     color: var(--spt-link-default);
 }
 
-.spt-form-delete-category-button:active,
-.spt-form-delete-category-button:hover {
+.sptcl-form-delete-category-button:active,
+.sptcl-form-delete-category-button:hover {
     background-color: transparent;
     border-color: transparent;
     color: var(--spt-link-hover);

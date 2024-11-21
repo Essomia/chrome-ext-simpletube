@@ -6,37 +6,40 @@
         <link rel="stylesheet" href="options.css" />
     </head>
     <body>
-        <main class="spt-opt-content-wrapper">
+        <main class="sptcl-opt-content-wrapper">
             <h1>
-                <span class="spt-brand-color">SimpleTube</span>
-                <span id="sptid-version" class="spt-brand-version"></span>
+                <span class="sptcl-brand-color">SimpleTube</span>
+                <span id="sptid-version" class="sptcl-brand-version"></span>
                 - YouTube Filters & Subscriptions Manager
             </h1>
 
             <!-- MESSAGE -->
-            <div id="sptid-alert-message" class="spt-opt-alert-message"></div>
+            <div id="sptid-alert-message" class="sptcl-opt-alert-message"></div>
 
             <!-- OPTIONS: General Options -->
-            <div class="spt-opt-content-section">
+            <div class="sptcl-opt-content-section">
                 <h2>General Options</h2>
-                <p class="spt-opt-description">
+                <p class="sptcl-opt-description">
                     Hide or show specific sections or elements based on user
                     preferences.
                 </p>
 
                 <label
                     for="sptid-do-hide-watched"
-                    class="spt-form-option-label"
+                    class="sptcl-form-option-label"
                 >
                     <input type="checkbox" id="sptid-do-hide-watched" />
                     Hide watched videos
-                    <span class="spt-opt-default-info">(Default: false)</span>
+                    <span class="sptcl-opt-default-info">(Default: false)</span>
                 </label>
 
-                <label for="sptid-do-hide-shorts" class="spt-form-option-label">
+                <label
+                    for="sptid-do-hide-shorts"
+                    class="sptcl-form-option-label"
+                >
                     <input type="checkbox" id="sptid-do-hide-shorts" />
                     Hide 'Shorts' section on pages
-                    <span class="spt-opt-default-info">(Default: false)</span>
+                    <span class="sptcl-opt-default-info">(Default: false)</span>
                     <span class="stp-opt-additonal-info">
                         we still display the 'Shorts' link in the menu
                     </span>
@@ -44,34 +47,34 @@
             </div>
 
             <!-- OPTIONS: Video Length Filter -->
-            <div class="spt-opt-content-section">
+            <div class="sptcl-opt-content-section">
                 <h2>Video Length Filter</h2>
-                <p class="spt-opt-description">
+                <p class="sptcl-opt-description">
                     Videos NOT within the selected range will appear with
                     reduced opacity.
                 </p>
 
                 <label
                     for="sptid-do-fade-by-length"
-                    class="spt-form-option-label"
+                    class="sptcl-form-option-label"
                 >
                     <input type="checkbox" id="sptid-do-fade-by-length" />
                     Enable filter by video length
-                    <span class="spt-opt-default-info">(Default: true)</span>
+                    <span class="sptcl-opt-default-info">(Default: true)</span>
                 </label>
 
                 <label
                     for="sptid-video-length-min"
-                    class="spt-form-option-label"
+                    class="sptcl-form-option-label"
                 >
                     Select minimum video length:
-                    <span class="spt-opt-default-info"
+                    <span class="sptcl-opt-default-info"
                         >(Default: 0 minutes)</span
                     >
                 </label>
                 <select
                     id="sptid-video-length-min"
-                    class="spt-form-select-input"
+                    class="sptcl-form-select-input"
                 >
                     <option value="0">0 minutes</option>
                     <option value="5">5 minutes</option>
@@ -87,16 +90,16 @@
 
                 <label
                     for="sptid-video-length-max"
-                    class="spt-form-option-label"
+                    class="sptcl-form-option-label"
                 >
                     Select maximum video length:
-                    <span class="spt-opt-default-info"
+                    <span class="sptcl-opt-default-info"
                         >(Default: 30 minutes)</span
                     >
                 </label>
                 <select
                     id="sptid-video-length-max"
-                    class="spt-form-select-input"
+                    class="sptcl-form-select-input"
                 >
                     <option value="5">5 minutes</option>
                     <option value="10">10 minutes</option>
@@ -111,16 +114,16 @@
             </div>
 
             <!-- OPTIONS: Subscription Categories Manager -->
-            <div class="spt-opt-content-section">
+            <div class="sptcl-opt-content-section">
                 <h2>Subscription Categories Filter</h2>
-                <p class="spt-opt-description">
+                <p class="sptcl-opt-description">
                     Organize your channel subscriptions into categories.
                     <br />
                     Each category will be displayed at the top of your
                     <a
                         href="https://www.youtube.com/feed/subscriptions"
                         target="_blank"
-                        class="spt-link"
+                        class="sptcl-link"
                     >
                         subscriptions page
                     </a>
@@ -131,7 +134,7 @@
                     <a
                         href="https://www.youtube.com/feed/channels"
                         target="_blank"
-                        class="spt-link"
+                        class="sptcl-link"
                     >
                         subscriptions management page
                     </a>
@@ -140,41 +143,44 @@
 
                 <label
                     for="sptid-do-categorize-subscription"
-                    class="spt-form-option-label"
+                    class="sptcl-form-option-label"
                 >
                     <input
                         type="checkbox"
                         id="sptid-do-categorize-subscription"
                     />
                     Enable filter by category on the subscription page
-                    <span class="spt-opt-default-info">(Default: false)</span>
+                    <span class="sptcl-opt-default-info">(Default: false)</span>
                 </label>
 
-                <label for="sptid-category-name" class="spt-form-option-label">
+                <label
+                    for="sptid-category-name"
+                    class="sptcl-form-option-label"
+                >
                     Category name:
                 </label>
                 <input
                     type="text"
                     id="sptid-category-name"
-                    class="spt-form-text-input"
+                    class="sptcl-form-text-input"
                     placeholder="New category name"
                     maxlength="30"
                 />
-                <button id="sptid-category-add" class="spt-form-add-button">
+                <button id="sptid-category-add" class="sptcl-form-add-button">
                     Add Category
                 </button>
-                <span class="spt-opt-default-info">Max: 30 characters</span>
+                <span class="sptcl-opt-default-info">Max: 30 characters</span>
 
                 <p>List of categories:</p>
                 <ul
                     id="sptid-categories-list"
-                    class="spt-opt-list-categories"
+                    class="sptcl-opt-list-categories"
                 ></ul>
-                <p class="spt-opt-default-info">
+                <p class="sptcl-opt-default-info">
                     Clicking the 'delete' button will remove the category from
                     the list and from all associated subscriptions.
                 </p>
-                <p class="spt-opt-default-info">
+                <p class="sptcl-opt-default-info">
                     Please note: for the time being, if you unsubscribe from a
                     channel, the category will remain associated with it, unless
                     you remove the category manually before unsubscribing. I'm
@@ -183,12 +189,12 @@
             </div>
 
             <!-- SAVE -->
-            <button id="sptid-settings-save" class="spt-form-save-button">
+            <button id="sptid-settings-save" class="sptcl-form-save-button">
                 Save Settings
             </button>
 
             <!-- RESET -->
-            <button id="sptid-settings-reset" class="spt-form-reset-button">
+            <button id="sptid-settings-reset" class="sptcl-form-reset-button">
                 Reset Settings
             </button>
         </main>

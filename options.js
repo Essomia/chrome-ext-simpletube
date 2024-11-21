@@ -5,10 +5,10 @@
 
 function renderAlertMessage(message, error = false) {
     const messageElement = document.getElementById("sptid-alert-message");
-    messageElement.classList.remove("spt-error", "spt-success");
+    messageElement.classList.remove("sptcl-error", "sptcl-success");
 
     messageElement.textContent = message;
-    messageElement.classList.add(error ? "spt-error" : "spt-success");
+    messageElement.classList.add(error ? "sptcl-error" : "sptcl-success");
 
     window.scrollTo({ top: 0 });
 
@@ -19,7 +19,7 @@ function renderAlertMessage(message, error = false) {
 
     // Hide the message after 5 seconds
     renderAlertMessage.timeoutId = setTimeout(() => {
-        messageElement.classList.remove("spt-error", "spt-success");
+        messageElement.classList.remove("sptcl-error", "sptcl-success");
         messageElement.textContent = "";
     }, 3000);
 }
@@ -32,7 +32,7 @@ function renderListCategories(categories) {
     if (categories.length === 0) {
         const emptyLiElement = document.createElement("li");
         emptyLiElement.textContent = "No categories added yet!";
-        emptyLiElement.classList.add("spt-empty-item");
+        emptyLiElement.classList.add("sptcl-empty-item");
 
         categoriesList.appendChild(emptyLiElement);
         return;
@@ -49,7 +49,7 @@ function renderListCategories(categories) {
             // Create delete button for each category
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "delete";
-            deleteButton.classList.add("spt-form-delete-category-button");
+            deleteButton.classList.add("sptcl-form-delete-category-button");
 
             deleteButton.addEventListener("click", () => {
                 // Remove the associated category from all subscriptions

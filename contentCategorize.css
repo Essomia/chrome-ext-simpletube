@@ -1,6 +1,6 @@
 /* Category Dropdown */
 
-.spt-category-select {
+.sptcl-category-select {
     display: inline-block;
     position: relative;
     margin: 0px 0px 8px 8px;
@@ -20,19 +20,19 @@
     font-weight: 500;
 }
 
-.spt-category-select:active,
-.spt-category-select:hover {
+.sptcl-category-select:active,
+.sptcl-category-select:hover {
     background-color: var(--yt-spec-button-chip-background-hover);
 }
 
-.spt-category-no-selected {
+.sptcl-category-no-selected {
     background-color: var(--yt-spec-additive-background);
     color: var(--yt-spec-inverted-background);
 }
 
 /* Category Filter Buttons */
 
-.spt-category-filter-container {
+.sptcl-category-filter-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -40,7 +40,7 @@
     margin: var(--ytd-rich-grid-item-margin);
 }
 
-.spt-category-filter-button {
+.sptcl-category-filter-button {
     display: inline-block;
     position: relative;
     margin: 0px calc(var(--ytd-rich-grid-item-margin) / 4);
@@ -55,7 +55,7 @@
     font-weight: 500;
 }
 
-.spt-category-filter-button[data-active] {
+.sptcl-category-filter-button[data-active] {
     background-color: var(--yt-spec-static-brand-red);
     color: var(--yt-spec-inverted-background);
 }
