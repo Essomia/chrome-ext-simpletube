@@ -32,18 +32,20 @@
 
 /* Category Filter Buttons */
 
+.sptcl-channel-filter-container,
 .sptcl-category-filter-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin: var(--ytd-rich-grid-item-margin);
+    margin: 16px;
+    padding: 0;
 }
 
-.sptcl-category-filter-button {
+.sptcl-filter-button {
     display: inline-block;
     position: relative;
-    margin: 0px calc(var(--ytd-rich-grid-item-margin) / 4);
+    margin: 0px calc(16px / 4);
     padding: 8px 16px;
     cursor: pointer;
     background-color: var(--yt-spec-additive-background);
@@ -55,7 +57,7 @@
     font-weight: 500;
 }
 
-.sptcl-category-filter-button[data-active] {
+.sptcl-filter-button[data-active] {
     background-color: var(--yt-spec-static-brand-red);
     color: var(--yt-spec-inverted-background);
 }

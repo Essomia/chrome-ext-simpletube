@@ -163,6 +163,51 @@ chrome.storage.sync.get(
         };
 
         /**
+         * Channel Page: Channel Filtered by Category Buttons
+         */
+
+        const renderChannelsPageFilters = () => {
+            // Get DOM elements
+            const channelPageContainer = document.querySelector(
+                ".ytd-page-manager[page-subtype='subscriptions-channels']"
+            );
+
+            // If filters already exist, skip
+            if (channelPageContainer.querySelectorAll(".sptcl-channel-filter-container").length > 0) return;
+
+            // Create the filters container
+            const filterContainerEl = document.createElement("div");
+            filterContainerEl.classList.add("sptcl-channel-filter-container");
+
+            // Create a 'All' button (to show all channels)
+            renderButtonAll(filterContainerEl, document.querySelectorAll("ytd-channel-renderer"));
+
+            // Create each category as a filter button
+            categories.forEach((category) => {
+                renderButtonCategory(
+                    filterContainerEl,
+                    document.querySelectorAll("ytd-channel-renderer"),
+                    category,
+                    channelCategoryAssigned,
+                    true,
+                    false
+                );
+            });
+
+            renderButtonCategory(
+                filterContainerEl,
+                document.querySelectorAll("ytd-channel-renderer"),
+                "Not Assigned",
+                channelCategoryAssigned,
+                true,
+                true
+            );
+
+            // Append the filters to the primary container
+            channelPageContainer.prepend(filterContainerEl);
+        };
+
+        /**
          * Subscriptions Page: Videos Filtered by Category Buttons
          */
 
@@ -215,6 +260,7 @@ chrome.storage.sync.get(
             setInterval(() => {
                 if (window.location.pathname === "/feed/channels") {
                     renderChannelsPageCategoryDropdown();
+                    renderChannelsPageFilters();
                 }
 
                 if (window.location.pathname === "/feed/subscriptions") {
