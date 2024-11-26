@@ -20,10 +20,7 @@
             "js": ["content.js"]
         },
         {
-            "matches": [
-                "*://www.youtube.com/feed/channels*",
-                "*://www.youtube.com/feed/subscriptions*"
-            ],
+            "matches": ["*://www.youtube.com/*"],
             "js": ["contentCategorize.js"],
             "css": ["contentCategorize.css"],
             "run_at": "document_idle"

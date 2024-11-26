@@ -21,7 +21,7 @@ function renderAlertMessage(message, error = false) {
     renderAlertMessage.timeoutId = setTimeout(() => {
         messageElement.classList.remove("sptcl-error", "sptcl-success");
         messageElement.textContent = "";
-    }, 3000);
+    }, 5000);
 }
 
 function renderListCategories(categories) {

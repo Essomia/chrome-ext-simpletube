@@ -121,6 +121,7 @@
 
 /* Forms Buttons */
 
+.sptcl-form-add-button,
 .sptcl-form-save-button {
     background-color: var(--spt-success-base);
     border-color: var(--spt-success-dark);

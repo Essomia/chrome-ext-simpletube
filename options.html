@@ -63,6 +63,8 @@
                     <span class="sptcl-opt-default-info">(Default: true)</span>
                 </label>
 
+                <br />
+
                 <label
                     for="sptid-video-length-min"
                     class="sptcl-form-option-label"
@@ -153,6 +155,8 @@
                     <span class="sptcl-opt-default-info">(Default: false)</span>
                 </label>
 
+                <br />
+
                 <label
                     for="sptid-category-name"
                     class="sptcl-form-option-label"
@@ -171,32 +175,52 @@
                 </button>
                 <span class="sptcl-opt-default-info">Max: 30 characters</span>
 
-                <p>List of categories:</p>
+                <p>List of categories</p>
                 <ul
                     id="sptid-categories-list"
                     class="sptcl-opt-list-categories"
                 ></ul>
+
+                <p class="sptcl-opt-default-info">
+                    Categories are ordered alphabetically automatically when you
+                    add a new category.
+                </p>
                 <p class="sptcl-opt-default-info">
                     Clicking the 'delete' button will remove the category from
                     the list and from all associated subscriptions.
                 </p>
                 <p class="sptcl-opt-default-info">
                     Please note: for the time being, if you unsubscribe from a
-                    channel, the category will remain associated with it, unless
-                    you remove the category manually before unsubscribing. I'm
-                    working on a fix for this for the next version.
+                    channel, the category will remain associated with the
+                    category, unless you remove the category manually before
+                    unsubscribing. I'm working on a fix for this for the next
+                    version.
                 </p>
             </div>
 
             <!-- SAVE -->
-            <button id="sptid-settings-save" class="sptcl-form-save-button">
-                Save Settings
-            </button>
+            <div class="sptcl-opt-content-section">
+                <button id="sptid-settings-save" class="sptcl-form-save-button">
+                    Save Settings
+                </button>
+            </div>
 
             <!-- RESET -->
-            <button id="sptid-settings-reset" class="sptcl-form-reset-button">
-                Reset Settings
-            </button>
+            <div class="sptcl-opt-content-section">
+                <h2>Reset Settings</h2>
+                <p>
+                    <strong>Warning:</strong> This action will clear all
+                    settings back to their default values. However, categories
+                    will be kept intact so you wouldn't need to re-assigned
+                    channels to a category.
+                </p>
+                <button
+                    id="sptid-settings-reset"
+                    class="sptcl-form-reset-button"
+                >
+                    Reset Settings
+                </button>
+            </div>
         </main>
 
         <script src="options.js"></script>
