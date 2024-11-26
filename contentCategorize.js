@@ -96,6 +96,36 @@ function applyFilterToContent(contentArr, category, channelCategoryAssigned, for
     });
 }
 
+/**
+ * Observe changes in the subscriptions page and reapply filters
+ * @param {HTMLElement} subscriptionsPageContainer - The container element of the subscriptions page
+ * @param {Object} channelCategoryAssigned - The list of channels assigned to each category
+ * @returns {void}
+ */
+function observeSubscriptionsPage(subscriptionsPageContainer, channelCategoryAssigned) {
+    const observer = new MutationObserver(() => {
+        const activeFilterButtonEl = subscriptionsPageContainer.querySelector(
+            `.${CLASS_FILTER_BUTTON}[data-active="true"]`
+        );
+
+        if (activeFilterButtonEl) {
+            const contentArr = document.querySelectorAll(YTB_SUBSCRIPTIONS_VIDEO_SELECTOR);
+            const category = activeFilterButtonEl.textContent;
+            const forChannelPage = false;
+
+            if (category === CATEGORY_ALL) {
+                contentArr.forEach((video) => {
+                    video.style.display = "";
+                });
+            } else {
+                applyFilterToContent(contentArr, category, channelCategoryAssigned, forChannelPage);
+            }
+        }
+    });
+
+    observer.observe(subscriptionsPageContainer, { childList: true, subtree: true });
+}
+
 chrome.storage.sync.get(
     ["doCategorizeSubscription", "categories", "channelCategoryAssigned"],
     ({ doCategorizeSubscription, categories, channelCategoryAssigned }) => {
@@ -246,6 +276,9 @@ chrome.storage.sync.get(
                     }
                 });
             });
+
+            // Observe changes in the subscriptions page
+            observeSubscriptionsPage(subscriptionsPageContainer, channelCategoryAssigned);
         };
 
         /**
