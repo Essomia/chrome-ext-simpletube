@@ -8,6 +8,9 @@ This Chrome extension allows users to filter YouTube content by video length, ma
 -   **Hide Watched Videos**: Hide videos that you have already watched, helping you focus on new content.
 -   **Video Length Filter**: Adjust the visibility of videos based on their length. You can specify a minimum and maximum duration, and videos that fall outside this range will have their opacity reduced.
 -   **Subscription Categories**: Organize your channel subscriptions into categories and filter videos on your subscriptions page based on these categories. Filtering persists even when new content is dynamically loaded by YouTube, but not on page reload.
+    -   **Channel Page Dropdown for Category Assignment**: Assign categories to each subscribed channel directly on the channel management page.
+    -   **Category Filters on Subscriptions and Channel Pages**: Easily filter your subscription videos or channels by category, including categories like "All" or "Not Assigned".
+    -   **Persistent Filters on Dynamic Content**: The filter applied on the subscription page remains active as new videos are loaded dynamically by YouTube, providing a seamless browsing experience.
 
 ## Installation
 
@@ -21,6 +24,7 @@ Once installed and configured, the extension automatically applies your selected
 -   Watched videos can be hidden entirely.
 -   The "Shorts" section can be hidden for a more focused YouTube experience.
 -   Filter your subscriptions page by categories for easier content discovery.
+    -   Assign categories to your channels subscriptions on the channel page and filter based on these assignments for better management.
 
 ## Directory Structure
 
@@ -54,7 +58,7 @@ If you want to modify or contribute to this extension:
 
 3. Make changes to the appropriate files (`manifest.json`, `background.js`, `options.html`, `options.js`, `content.js`, `contentCategorize.js`).
 4. Reload the extension on the Chrome Extensions page to apply the changes.
-5. (Re)configure the extension _(on reload, somes settings are reinitialized)_:
+5. (Re)configure the extension _(on reload, some settings are reinitialized)_:
 
     - Click on the extension icon in the Chrome toolbar.
     - Select **Options** to open the settings page.
@@ -64,41 +68,48 @@ If you want to modify or contribute to this extension:
 
 ### Versions
 
+v0.5.0:
+
+-   **feat**: contentcategories - add observer to reapply filter on new video loaded for subscriptions.
+-   **feat**: contentcategories - reduce repetition on filtering logic.
+-   **feat**: contentcategories - add filters on channel page.
+-   **feat**: contentcategories - create function for reusable features.
+
 v0.4.0:
 
-    - fix: options - optimize options page display
-    - fix: options - sort category on save action to ensure consistency
-    - fix: rename DOM class and ID to have a extension prefix
+-   **fix**: options - optimize options page display.
+-   **fix**: options - sort category on save action to ensure consistency.
+-   **fix**: rename DOM class and ID to have an extension prefix.
 
 v0.3.0:
 
-    - feat: contentCategorize - add handlers to filter videos on the subscription page based on the category filter button clicked
-    - feat: contentCategorize - add filter container and buttons without handlers to subscriptions page
-    - fix: options - limit length for category name
-    - feat: contentCategorize - add dropdown to assign category to subscriptions management page
-    - feat: options - allow user to remove category
-    - feat: options - add option to create categories for subscriptions and emable these categories as filters
-    - chore: add extensions icons
+-   **feat**: contentcategorize - add handlers to filter videos on the subscription page based on the category filter button clicked.
+-   **feat**: contentcategorize - add filter container and buttons without handlers to subscriptions page.
+-   **fix**: options - limit length for category name.
+-   **feat**: contentcategorize - add dropdown to assign category to subscriptions management page.
+-   **feat**: options - allow user to remove category.
+-   **feat**: options - add option to create categories for subscriptions and enable these categories as filters.
+-   **chore**: add extension icons.
 
 v0.2.0:
 
-    - feat: options - allow reset settings to default
-    - feat: content - hide shorts section and watched videos when option is checked
-    - feat: options - add option to hide shorts section and watched videos
+-   **feat**: options - allow reset settings to default.
+-   **feat**: content - hide shorts section and watched videos when option is checked.
+-   **feat**: options - add option to hide shorts section and watched videos.
 
 v0.1.0:
 
-    - chore: update background to avoid overriding options on update
-    - feat: options - add styles to the options page
-    - feat: content - fade video based on video length filter
-    - feat: options - create video length filter
+-   **chore**: update background to avoid overriding options on update.
+-   **feat**: options - add styles to the options page.
+-   **feat**: content - fade video based on video length filter.
+-   **feat**: options - create video length filter.
 
 ### Future Enhancements
 
--   Publish extension to chrome store
--   Remove subscription from category on unsubscribe click
--   Add filter on management subscription page
--   Enhance performance by optimizing the way dynamic content is managed on YouTube
+-   Publish extension to Chrome store.
+-   Remove subscription from category on unsubscribe click.
+-   Add filter on management subscription page.
+-   Enhance performance by optimizing the way dynamic content is managed on YouTube.
 
 ## License
 
