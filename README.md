@@ -64,6 +64,12 @@ If you want to modify or contribute to this extension:
 
 ### Versions
 
+v0.4.0:
+
+    - fix: options - optimize options page display
+    - fix: options - sort category on save action to ensure consistency
+    - fix: rename DOM class and ID to have a extension prefix
+
 v0.3.0:
 
     - feat: contentCategorize - add handlers to filter videos on the subscription page based on the category filter button clicked
