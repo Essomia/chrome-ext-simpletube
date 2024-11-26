@@ -14,7 +14,7 @@
     background-repeat: no-repeat;
     border-radius: 18px;
     border: none;
-    color: var(--yt-spec-static-brand-red);
+    color: var(--yt-spec-inverted-background);
     font-family: "Roboto", "Arial", sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -23,11 +23,6 @@
 .sptcl-category-select:active,
 .sptcl-category-select:hover {
     background-color: var(--yt-spec-button-chip-background-hover);
-}
-
-.sptcl-category-no-selected {
-    background-color: var(--yt-spec-additive-background);
-    color: var(--yt-spec-inverted-background);
 }
 
 /* Category Filter Buttons */
@@ -59,5 +54,5 @@
 
 .sptcl-filter-button[data-active] {
     background-color: var(--yt-spec-static-brand-red);
-    color: var(--yt-spec-inverted-background);
+    color: var(--yt-spec-base-background);
 }
