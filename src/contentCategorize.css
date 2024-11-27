@@ -15,7 +15,7 @@
     border-radius: 18px;
     border: none;
     color: var(--yt-spec-inverted-background);
-    font-family: "Roboto", "Arial", sans-serif;
+    font-family: 'Roboto', 'Arial', sans-serif;
     font-size: 14px;
     font-weight: 500;
 }
@@ -47,7 +47,7 @@
     border-radius: 18px;
     border: none;
     color: var(--yt-spec-inverted-background);
-    font-family: "Roboto", "Arial", sans-serif;
+    font-family: 'Roboto', 'Arial', sans-serif;
     font-size: 14px;
     font-weight: 500;
 }

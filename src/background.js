@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
      * If the extension is installed
      */
 
-    if (reason === "install") {
+    if (reason === 'install') {
         // Set the default upon installation
         chrome.storage.sync.set({
             // General Options
@@ -34,7 +34,7 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
      * If the extension is updated
      */
 
-    if (reason === "update") {
+    if (reason === 'update') {
         // Get the current version
         const currentVersion = chrome.runtime.getManifest().version;
 

@@ -1,5 +1,5 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 :root {
     --spt-white: #fff;
@@ -17,7 +17,7 @@
 body {
     background-color: var(--spt-gray-lighter);
     color: var(--spt-black);
-    font-family: "Lato", Arial, sans-serif;
+    font-family: 'Lato', Arial, sans-serif;
     font-size: 16px;
 }
 
@@ -49,7 +49,7 @@ label {
 }
 
 select,
-input[type="text"] {
+input[type='text'] {
     min-height: 2.4rem;
     min-width: 20rem;
     padding: 0.5rem;
@@ -58,7 +58,7 @@ input[type="text"] {
     border: 1px solid var(--spt-gray-light);
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
     margin-right: 0.5rem;
     cursor: pointer;
 }

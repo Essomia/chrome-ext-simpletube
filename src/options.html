@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <title>SimpleTube - YouTube Filters & Subscriptions Manager</title>
@@ -20,29 +20,20 @@
             <div class="sptcl-opt-content-section">
                 <h2>General Options</h2>
                 <p class="sptcl-opt-description">
-                    Hide or show specific sections or elements based on user
-                    preferences.
+                    Hide or show specific sections or elements based on user preferences.
                 </p>
 
-                <label
-                    for="sptid-do-hide-watched"
-                    class="sptcl-form-option-label"
-                >
+                <label for="sptid-do-hide-watched" class="sptcl-form-option-label">
                     <input type="checkbox" id="sptid-do-hide-watched" />
                     Hide watched videos
                     <span class="sptcl-opt-default-info">(Default: false)</span>
                 </label>
 
-                <label
-                    for="sptid-do-hide-shorts"
-                    class="sptcl-form-option-label"
-                >
+                <label for="sptid-do-hide-shorts" class="sptcl-form-option-label">
                     <input type="checkbox" id="sptid-do-hide-shorts" />
                     Hide 'Shorts' section on pages
                     <span class="sptcl-opt-default-info">(Default: false)</span>
-                    <span class="stp-opt-additonal-info">
-                        we still display the 'Shorts' link in the menu
-                    </span>
+                    <span class="stp-opt-additonal-info"> we still display the 'Shorts' link in the menu </span>
                 </label>
             </div>
 
@@ -50,14 +41,10 @@
             <div class="sptcl-opt-content-section">
                 <h2>Video Length Filter</h2>
                 <p class="sptcl-opt-description">
-                    Videos NOT within the selected range will appear with
-                    reduced opacity.
+                    Videos NOT within the selected range will appear with reduced opacity.
                 </p>
 
-                <label
-                    for="sptid-do-fade-by-length"
-                    class="sptcl-form-option-label"
-                >
+                <label for="sptid-do-fade-by-length" class="sptcl-form-option-label">
                     <input type="checkbox" id="sptid-do-fade-by-length" />
                     Enable filter by video length
                     <span class="sptcl-opt-default-info">(Default: true)</span>
@@ -65,19 +52,11 @@
 
                 <br />
 
-                <label
-                    for="sptid-video-length-min"
-                    class="sptcl-form-option-label"
-                >
+                <label for="sptid-video-length-min" class="sptcl-form-option-label">
                     Select minimum video length:
-                    <span class="sptcl-opt-default-info"
-                        >(Default: 0 minutes)</span
-                    >
+                    <span class="sptcl-opt-default-info">(Default: 0 minutes)</span>
                 </label>
-                <select
-                    id="sptid-video-length-min"
-                    class="sptcl-form-select-input"
-                >
+                <select id="sptid-video-length-min" class="sptcl-form-select-input">
                     <option value="0">0 minutes</option>
                     <option value="5">5 minutes</option>
                     <option value="10">10 minutes</option>
@@ -90,19 +69,11 @@
                     <option value="120">2 hours</option>
                 </select>
 
-                <label
-                    for="sptid-video-length-max"
-                    class="sptcl-form-option-label"
-                >
+                <label for="sptid-video-length-max" class="sptcl-form-option-label">
                     Select maximum video length:
-                    <span class="sptcl-opt-default-info"
-                        >(Default: 30 minutes)</span
-                    >
+                    <span class="sptcl-opt-default-info">(Default: 30 minutes)</span>
                 </label>
-                <select
-                    id="sptid-video-length-max"
-                    class="sptcl-form-select-input"
-                >
+                <select id="sptid-video-length-max" class="sptcl-form-select-input">
                     <option value="5">5 minutes</option>
                     <option value="10">10 minutes</option>
                     <option value="20">20 minutes</option>
@@ -122,47 +93,27 @@
                     Organize your channel subscriptions into categories.
                     <br />
                     Each category will be displayed at the top of your
-                    <a
-                        href="https://www.youtube.com/feed/subscriptions"
-                        target="_blank"
-                        class="sptcl-link"
-                    >
+                    <a href="https://www.youtube.com/feed/subscriptions" target="_blank" class="sptcl-link">
                         subscriptions page
                     </a>
                     , allowing you to filter videos.
                     <br />
-                    You can assign categories to your channel subscriptions on
-                    the
-                    <a
-                        href="https://www.youtube.com/feed/channels"
-                        target="_blank"
-                        class="sptcl-link"
-                    >
+                    You can assign categories to your channel subscriptions on the
+                    <a href="https://www.youtube.com/feed/channels" target="_blank" class="sptcl-link">
                         subscriptions management page
                     </a>
                     .
                 </p>
 
-                <label
-                    for="sptid-do-categorize-subscription"
-                    class="sptcl-form-option-label"
-                >
-                    <input
-                        type="checkbox"
-                        id="sptid-do-categorize-subscription"
-                    />
+                <label for="sptid-do-categorize-subscription" class="sptcl-form-option-label">
+                    <input type="checkbox" id="sptid-do-categorize-subscription" />
                     Enable filter by category on the subscription page
                     <span class="sptcl-opt-default-info">(Default: false)</span>
                 </label>
 
                 <br />
 
-                <label
-                    for="sptid-category-name"
-                    class="sptcl-form-option-label"
-                >
-                    Category name:
-                </label>
+                <label for="sptid-category-name" class="sptcl-form-option-label"> Category name: </label>
                 <input
                     type="text"
                     id="sptid-category-name"
@@ -170,56 +121,39 @@
                     placeholder="New category name"
                     maxlength="30"
                 />
-                <button id="sptid-category-add" class="sptcl-form-add-button">
-                    Add Category
-                </button>
+                <button id="sptid-category-add" class="sptcl-form-add-button">Add Category</button>
                 <span class="sptcl-opt-default-info">Max: 30 characters</span>
 
                 <p>List of categories</p>
-                <ul
-                    id="sptid-categories-list"
-                    class="sptcl-opt-list-categories"
-                ></ul>
+                <ul id="sptid-categories-list" class="sptcl-opt-list-categories"></ul>
 
                 <p class="sptcl-opt-default-info">
-                    Categories are ordered alphabetically automatically when you
-                    add a new category.
+                    Categories are ordered alphabetically automatically when you add a new category.
                 </p>
                 <p class="sptcl-opt-default-info">
-                    Clicking the 'delete' button will remove the category from
-                    the list and from all associated subscriptions.
+                    Clicking the 'delete' button will remove the category from the list and from all associated
+                    subscriptions.
                 </p>
                 <p class="sptcl-opt-default-info">
-                    Please note: for the time being, if you unsubscribe from a
-                    channel, the category will remain associated with the
-                    category, unless you remove the category manually before
-                    unsubscribing. I'm working on a fix for this for the next
-                    version.
+                    Please note: for the time being, if you unsubscribe from a channel, the category will remain
+                    associated with the category, unless you remove the category manually before unsubscribing. I'm
+                    working on a fix for this for the next version.
                 </p>
             </div>
 
             <!-- SAVE -->
             <div class="sptcl-opt-content-section">
-                <button id="sptid-settings-save" class="sptcl-form-save-button">
-                    Save Settings
-                </button>
+                <button id="sptid-settings-save" class="sptcl-form-save-button">Save Settings</button>
             </div>
 
             <!-- RESET -->
             <div class="sptcl-opt-content-section">
                 <h2>Reset Settings</h2>
                 <p>
-                    <strong>Warning:</strong> This action will clear all
-                    settings back to their default values. However, categories
-                    will be kept intact so you wouldn't need to re-assigned
-                    channels to a category.
+                    <strong>Warning:</strong> This action will clear all settings back to their default values. However,
+                    categories will be kept intact so you wouldn't need to re-assigned channels to a category.
                 </p>
-                <button
-                    id="sptid-settings-reset"
-                    class="sptcl-form-reset-button"
-                >
-                    Reset Settings
-                </button>
+                <button id="sptid-settings-reset" class="sptcl-form-reset-button">Reset Settings</button>
             </div>
         </main>
 
