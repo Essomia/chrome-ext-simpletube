@@ -1,0 +1,11 @@
+# Node.js specific
+node_modules/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# IDE/Editor specific
+.vscode/
+.idea/

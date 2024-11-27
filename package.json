@@ -1,0 +1,17 @@
+{
+  "type": "module",
+  "scripts": {
+    "lint": "npm run lint:script && npm run lint:format",
+    "lint:fix": "npm run lint:script:fix && npm run lint:format:fix",
+    "lint:script": "eslint .",
+    "lint:script:fix": "eslint --fix .",
+    "lint:format": "prettier --check .",
+    "lint:format:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint": "^9.15.0",
+    "prettier": "^3.4.1"
+  }
+}
