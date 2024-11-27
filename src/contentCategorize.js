@@ -41,13 +41,14 @@ function getChannelName(contentEl, isChannelPage = false) {
  * @returns {void}
  */
 function renderButtonsFilters(filterContainerEl, categories) {
-    categories.forEach((category) => {
+    categories.forEach(({ id, name }) => {
         const filterButtonEl = document.createElement('span');
-        filterButtonEl.textContent = category;
+        filterButtonEl.textContent = name;
+        filterButtonEl.setAttribute('data-category-id', id);
         filterButtonEl.classList.add(CLASS_FILTER_BUTTON);
 
         // Set the default filter to "All" when the page is loaded
-        if (category === CATEGORY_ALL) {
+        if (name === CATEGORY_ALL) {
             filterButtonEl.setAttribute('data-active', 'true');
         }
 
@@ -72,13 +73,13 @@ function renderButtonsFilters(filterContainerEl, categories) {
  * @param {boolean} forChannelPage - If the page is a channel page
  * @returns {void}
  */
-function applyFilterToContent(contentArr, category, channelCategoryAssigned, forChannelPage) {
+function applyFilterToContent(contentArr, categoryId, channelCategoryAssigned, forChannelPage) {
     // Apply the selected filter to the channels
     contentArr.forEach((contentEl) => {
         const channelName = getChannelName(contentEl, forChannelPage);
 
         // If the category is "Not Assigned"
-        if (category === CATEGORY_NOT_ASSIGNED) {
+        if (categoryId === CATEGORY_NOT_ASSIGNED) {
             // Show the content only if the channel is not assigned to any category
             if (!channelCategoryAssigned[channelName]) {
                 contentEl.style.display = '';
@@ -87,7 +88,7 @@ function applyFilterToContent(contentArr, category, channelCategoryAssigned, for
             }
         } else {
             // If the category is assigned to the channel, show the content
-            if (channelCategoryAssigned[channelName] === category) {
+            if (channelCategoryAssigned[channelName] === categoryId) {
                 contentEl.style.display = '';
             } else {
                 contentEl.style.display = 'none';
@@ -110,7 +111,7 @@ function observeSubscriptionsPage(subscriptionsPageContainer, channelCategoryAss
 
         if (activeFilterButtonEl) {
             const contentArr = document.querySelectorAll(YTB_SUBSCRIPTIONS_VIDEO_SELECTOR);
-            const category = activeFilterButtonEl.textContent;
+            const category = activeFilterButtonEl.getAttribute('data-category-id');
             const forChannelPage = false;
 
             if (category === CATEGORY_ALL) {
@@ -129,6 +130,9 @@ function observeSubscriptionsPage(subscriptionsPageContainer, channelCategoryAss
 chrome.storage.sync.get(
     ['doCategorizeSubscription', 'categories', 'channelCategoryAssigned'],
     ({ doCategorizeSubscription, categories, channelCategoryAssigned }) => {
+        // Sort categories alphabetically by name
+        categories.sort((a, b) => a.name.localeCompare(b.name));
+
         /**
          * Channel Page: Dropdown for Category Assignment
          */
@@ -163,14 +167,14 @@ chrome.storage.sync.get(
                 selectEl.appendChild(defaultOptionEl);
 
                 // Create each categories as an option
-                categories.forEach((category) => {
+                categories.forEach(({ id, name }) => {
                     const optionEl = document.createElement('option');
-                    optionEl.text = category;
-                    optionEl.value = category;
+                    optionEl.text = name;
+                    optionEl.value = id;
                     optionEl.classList.add(CLASS_CATEGORY_OPTION);
 
                     // Set the selected option if the category is already assigned
-                    if (channelCategoryAssigned[channelName] === category) {
+                    if (channelCategoryAssigned[channelName] === id) {
                         optionEl.selected = true;
                     }
 
@@ -211,7 +215,11 @@ chrome.storage.sync.get(
                 filterContainerEl.classList.add(CLASS_FILTER_CONTAINER_CHANNEL);
 
                 // Create filter buttons
-                renderButtonsFilters(filterContainerEl, [CATEGORY_ALL, ...categories, CATEGORY_NOT_ASSIGNED]);
+                renderButtonsFilters(filterContainerEl, [
+                    { id: CATEGORY_ALL, name: CATEGORY_ALL },
+                    ...categories,
+                    { id: CATEGORY_NOT_ASSIGNED, name: CATEGORY_NOT_ASSIGNED },
+                ]);
 
                 // Append the filters to the primary container
                 channelPageEl.prepend(filterContainerEl);
@@ -223,7 +231,7 @@ chrome.storage.sync.get(
             filterButtonsArr.forEach((filterButtonEl) => {
                 filterButtonEl.addEventListener('click', () => {
                     const contentArr = document.querySelectorAll(YTB_CHANNEL_BLOCK_SELECTOR);
-                    const category = filterButtonEl.textContent;
+                    const category = filterButtonEl.getAttribute('data-category-id');
                     const forChannelPage = true;
 
                     if (category === CATEGORY_ALL) {
@@ -252,7 +260,7 @@ chrome.storage.sync.get(
                 filterContainerEl.classList.add(CLASS_FILTER_CONTAINER_SUBSCRIPTION);
 
                 // Create filter buttons
-                renderButtonsFilters(filterContainerEl, [CATEGORY_ALL, ...categories]);
+                renderButtonsFilters(filterContainerEl, [{ id: CATEGORY_ALL, name: CATEGORY_ALL }, ...categories]);
 
                 // Append the filters to the primary container
                 subscriptionsPageContainer.prepend(filterContainerEl);
@@ -264,7 +272,7 @@ chrome.storage.sync.get(
             filterButtonsArr.forEach((filterButtonEl) => {
                 filterButtonEl.addEventListener('click', () => {
                     const contentArr = document.querySelectorAll(YTB_SUBSCRIPTIONS_VIDEO_SELECTOR);
-                    const category = filterButtonEl.textContent;
+                    const category = filterButtonEl.getAttribute('data-category-id');
                     const forChannelPage = false;
 
                     if (category === CATEGORY_ALL) {

@@ -28,6 +28,9 @@ function renderListCategories(categories) {
     const categoriesList = document.getElementById('sptid-categories-list');
     categoriesList.innerHTML = '';
 
+    // Sort categories alphabetically by name
+    categories.sort((a, b) => a.name.localeCompare(b.name));
+
     // If there are no categories, show a message
     if (categories.length === 0) {
         const emptyLiElement = document.createElement('li');
@@ -39,10 +42,10 @@ function renderListCategories(categories) {
     }
 
     // Render categories with delete button
-    categories.forEach((category) => {
+    categories.forEach(({ id, name }) => {
         // Create list item for each category
         const newLiElement = document.createElement('li');
-        newLiElement.textContent = category;
+        newLiElement.textContent = name;
 
         // Create delete button for each category
         const deleteButton = document.createElement('button');
@@ -53,7 +56,7 @@ function renderListCategories(categories) {
             // Remove the associated category from all subscriptions
             chrome.storage.sync.get(['channelCategoryAssigned'], ({ channelCategoryAssigned }) => {
                 Object.keys(channelCategoryAssigned).forEach((channel) => {
-                    if (channelCategoryAssigned[channel] === category) {
+                    if (channelCategoryAssigned[channel] === id) {
                         delete channelCategoryAssigned[channel];
                     }
                 });
@@ -63,10 +66,10 @@ function renderListCategories(categories) {
 
             // Remove the category from the list
             chrome.storage.sync.get(['categories'], ({ categories }) => {
-                const newCategories = categories.filter((c) => c !== category);
+                const newCategories = categories.filter((c) => c.id !== id);
 
                 chrome.storage.sync.set({ categories: newCategories }, () => {
-                    renderAlertMessage(`Category "${category}" deleted successfully!`);
+                    renderAlertMessage(`Category "${name}" deleted successfully!`);
                     renderListCategories(newCategories);
                 });
             });
@@ -138,18 +141,22 @@ document.getElementById('sptid-category-add').addEventListener('click', () => {
 
     if (categoryName) {
         chrome.storage.sync.get(['categories'], ({ categories }) => {
-            if (!categories.includes(categoryName)) {
-                categories.push(categoryName);
-                document.getElementById('sptid-category-name').value = '';
-
-                // Sort categories alphabetically
-                const sortedCategories = [...categories].sort();
-
-                chrome.storage.sync.set({ categories: sortedCategories }, () => {
-                    renderAlertMessage(`Category "${categoryName}" added successfully!`);
-                    renderListCategories(categories);
-                });
+            if (categories.some((category) => category.name === categoryName)) {
+                renderAlertMessage(`Category "${categoryName}" already exists!`, true);
+                return;
             }
+
+            const newCategory = { id: Date.now().toString(), name: categoryName };
+            categories.push(newCategory);
+            document.getElementById('sptid-category-name').value = '';
+
+            // Sort categories alphabetically by name
+            const sortedCategories = [...categories].sort((a, b) => a.name.localeCompare(b.name));
+
+            chrome.storage.sync.set({ categories: sortedCategories }, () => {
+                renderAlertMessage(`Category "${categoryName}" added successfully!`);
+                renderListCategories(sortedCategories);
+            });
         });
     }
 });
