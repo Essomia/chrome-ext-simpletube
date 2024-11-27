@@ -58,7 +58,7 @@ function renderButtonsFilters(filterContainerEl, categories) {
 
         filterButtonEl.addEventListener('click', () => {
             // Add an attribute data-active="true" to the selected filter
-            document.querySelectorAll(SELECTOR_FILTER_BUTTON).forEach((btn) => {
+            filterContainerEl.querySelectorAll(SELECTOR_FILTER_BUTTON).forEach((btn) => {
                 btn.removeAttribute('data-active');
             });
 
@@ -125,7 +125,7 @@ function observeSubscriptionsPage(subscriptionsPageContainer, channelCategoryAss
         );
 
         if (activeFilterButtonEl) {
-            const contentArr = document.querySelectorAll(YTB_SELECTOR_SUBSCRIPTION_RENDERER);
+            const contentArr = subscriptionsPageContainer.querySelectorAll(YTB_SELECTOR_SUBSCRIPTION_RENDERER);
             const category = activeFilterButtonEl.getAttribute('data-category-id');
             const forChannelPage = false;
 
@@ -219,10 +219,10 @@ chrome.storage.sync.get(
 
         const renderChannelsPageFilters = () => {
             // Get DOM elements
-            const channelPageEl = document.querySelector(YTB_SELECTOR_CHANNEL_PAGE);
+            const channelPageContainer = document.querySelector(YTB_SELECTOR_CHANNEL_PAGE);
 
             // If filters do not exist, do create them...
-            if (!channelPageEl.querySelectorAll(`.${CLASS_FILTER_CONTAINER_CHANNEL}`).length) {
+            if (!channelPageContainer.querySelectorAll(`.${CLASS_FILTER_CONTAINER_CHANNEL}`).length) {
                 // Create the filters container
                 const filterContainerEl = document.createElement('div');
                 filterContainerEl.classList.add(CLASS_FILTER_CONTAINER_CHANNEL);
@@ -235,15 +235,15 @@ chrome.storage.sync.get(
                 ]);
 
                 // Append the filters to the primary container
-                channelPageEl.prepend(filterContainerEl);
+                channelPageContainer.prepend(filterContainerEl);
             }
 
             // Attach filter onclick event
-            const filterButtonsArr = channelPageEl.querySelectorAll(SELECTOR_FILTER_BUTTON);
+            const filterButtonsArr = channelPageContainer.querySelectorAll(SELECTOR_FILTER_BUTTON);
 
             filterButtonsArr.forEach((filterButtonEl) => {
                 filterButtonEl.addEventListener('click', () => {
-                    const contentArr = document.querySelectorAll(YTB_SELECTOR_CHANNEL_RENDERER);
+                    const contentArr = channelPageContainer.querySelectorAll(YTB_SELECTOR_CHANNEL_RENDERER);
                     const category = filterButtonEl.getAttribute('data-category-id');
                     const forChannelPage = true;
 
@@ -282,7 +282,7 @@ chrome.storage.sync.get(
 
             filterButtonsArr.forEach((filterButtonEl) => {
                 filterButtonEl.addEventListener('click', () => {
-                    const contentArr = document.querySelectorAll(YTB_SELECTOR_SUBSCRIPTION_RENDERER);
+                    const contentArr = subscriptionsPageContainer.querySelectorAll(YTB_SELECTOR_SUBSCRIPTION_RENDERER);
                     const category = filterButtonEl.getAttribute('data-category-id');
                     const forChannelPage = false;
 
