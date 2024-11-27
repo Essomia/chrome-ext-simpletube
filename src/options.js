@@ -41,16 +41,23 @@ function renderListCategories(categories) {
         return;
     }
 
-    // Render categories with delete button
+    // Render categories with delete and rename buttons
     categories.forEach(({ id, name }) => {
         // Create list item for each category
         const newLiElement = document.createElement('li');
-        newLiElement.textContent = name;
+
+        // Create span to hold the category name
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = name;
+
+        // Create div to hold the action buttons
+        const actionsDiv = document.createElement('div');
+        actionsDiv.classList.add('sptcl-category-actions');
 
         // Create delete button for each category
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'delete';
-        deleteButton.classList.add('sptcl-form-delete-category-button');
+        deleteButton.classList.add('sptcl-form-category-actions-button');
 
         deleteButton.addEventListener('click', () => {
             // Remove the associated category from all subscriptions
@@ -75,8 +82,42 @@ function renderListCategories(categories) {
             });
         });
 
-        // Append elements
-        newLiElement.appendChild(deleteButton);
+        // Create rename button for each category
+        const renameButton = document.createElement('button');
+        renameButton.textContent = 'rename';
+        renameButton.classList.add('sptcl-form-category-actions-button');
+
+        renameButton.addEventListener('click', () => {
+            const newName = prompt('Enter new name for the category:', name);
+
+            if (newName && newName.trim() !== '' && newName.trim() !== name) {
+                chrome.storage.sync.get(['categories'], ({ categories }) => {
+                    if (categories.some((category) => category.name === newName.trim())) {
+                        renderAlertMessage(`Category "${newName.trim()}" already exists!`, true);
+                        return;
+                    }
+
+                    const updatedCategories = categories.map((category) =>
+                        category.id === id ? { ...category, name: newName.trim() } : category
+                    );
+
+                    chrome.storage.sync.set({ categories: updatedCategories }, () => {
+                        renderAlertMessage(`Category renamed to "${newName.trim()}" successfully!`);
+                        renderListCategories(updatedCategories);
+                    });
+                });
+            }
+        });
+
+        // Append buttons to actions div
+        actionsDiv.appendChild(renameButton);
+        actionsDiv.appendChild(deleteButton);
+
+        // Append elements to list item
+        newLiElement.appendChild(nameSpan);
+        newLiElement.appendChild(actionsDiv);
+
+        // Append list item to categories list
         categoriesList.appendChild(newLiElement);
     });
 }

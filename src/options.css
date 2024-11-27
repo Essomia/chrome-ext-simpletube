@@ -123,11 +123,18 @@
 
 .sptcl-form-add-button,
 .sptcl-form-save-button {
-    background-color: var(--spt-success-base);
-    border-color: var(--spt-success-dark);
+    background-color: var(--spt-link-default);
+    border-color: var(--spt-link-default);
 }
 
-.sptcl-form-delete-category-button {
+.sptcl-category-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sptcl-form-category-actions-button {
+    margin-left: 1rem;
     padding: 0;
     min-height: auto;
     background-color: transparent;
@@ -135,8 +142,8 @@
     color: var(--spt-link-default);
 }
 
-.sptcl-form-delete-category-button:active,
-.sptcl-form-delete-category-button:hover {
+.sptcl-form-category-actions-button:active,
+.sptcl-form-category-actions-button:hover {
     background-color: transparent;
     border-color: transparent;
     color: var(--spt-link-hover);
