@@ -1,20 +1,24 @@
 /**
  * Constants
  */
-const YTB_CHANNEL_PAGE_SELECTOR = '.ytd-page-manager[page-subtype="subscriptions-channels"]';
-const YTB_CHANNEL_BLOCK_SELECTOR = 'ytd-channel-renderer';
-const YTB_SUBSCRIPTIONS_PAGE_SELECTOR = '.ytd-page-manager[page-subtype="subscriptions"]';
-const YTB_SUBSCRIPTIONS_VIDEO_SELECTOR = 'ytd-rich-item-renderer';
+const YTB_SELECTOR_CHANNEL_PAGE = '.ytd-page-manager[page-subtype="subscriptions-channels"]';
+const YTB_SELECTOR_CHANNEL_RENDERER = 'ytd-channel-renderer';
+const YTB_SELECTOR_SUBSCRIPTION_PAGE = '.ytd-page-manager[page-subtype="subscriptions"]';
+const YTB_SELECTOR_SUBSCRIPTION_RENDERER = 'ytd-rich-item-renderer';
 
 const CATEGORY_DD_DEFAULT = 'Category';
 const CLASS_CATEGORY_SELECT = 'sptcl-category-select';
 const CLASS_CATEGORY_OPTION = 'sptcl-category-option';
+
+const SELECTOR_CHANNEL_LINK = '#main-link.channel-link';
+const SELECTOR_CHANNEL_NAME_LINK = '.ytd-channel-name > a.yt-formatted-string';
 
 const CATEGORY_ALL = 'All';
 const CATEGORY_NOT_ASSIGNED = 'Not Assigned';
 const CLASS_FILTER_CONTAINER_CHANNEL = 'sptcl-channel-filter-container';
 const CLASS_FILTER_CONTAINER_SUBSCRIPTION = 'sptcl-subscription-filter-container';
 const CLASS_FILTER_BUTTON = 'sptcl-filter-button';
+const SELECTOR_FILTER_BUTTON = '.sptcl-filter-button';
 
 /**
  * Get the channel name from the channel block
@@ -24,8 +28,8 @@ const CLASS_FILTER_BUTTON = 'sptcl-filter-button';
  */
 function getChannelName(contentEl, isChannelPage = false) {
     const channelLink = isChannelPage
-        ? contentEl.querySelector('#main-link.channel-link')
-        : contentEl.querySelector('.ytd-channel-name > a.yt-formatted-string');
+        ? contentEl.querySelector(SELECTOR_CHANNEL_LINK)
+        : contentEl.querySelector(SELECTOR_CHANNEL_NAME_LINK);
 
     // get the channel name from the link href, remove the leasding slash, and trim the whitespace, and lowercase the channel name for consistency
     const channelNameArr = channelLink?.href?.split('/') || [];
@@ -54,7 +58,7 @@ function renderButtonsFilters(filterContainerEl, categories) {
 
         filterButtonEl.addEventListener('click', () => {
             // Add an attribute data-active="true" to the selected filter
-            document.querySelectorAll(`.${CLASS_FILTER_BUTTON}`).forEach((btn) => {
+            document.querySelectorAll(SELECTOR_FILTER_BUTTON).forEach((btn) => {
                 btn.removeAttribute('data-active');
             });
 
@@ -98,6 +102,17 @@ function applyFilterToContent(contentArr, categoryId, channelCategoryAssigned, f
 }
 
 /**
+ * Apply the default "All" filter
+ * @param {HTMLElement[]} contentArr - The list of contents to filter
+ * @returns {void}
+ */
+function applyDefaultFilter(contentArr) {
+    contentArr.forEach((contentEl) => {
+        contentEl.style.display = '';
+    });
+}
+
+/**
  * Observe changes in the subscriptions page and reapply filters
  * @param {HTMLElement} subscriptionsPageContainer - The container element of the subscriptions page
  * @param {Object} channelCategoryAssigned - The list of channels assigned to each category
@@ -106,18 +121,16 @@ function applyFilterToContent(contentArr, categoryId, channelCategoryAssigned, f
 function observeSubscriptionsPage(subscriptionsPageContainer, channelCategoryAssigned) {
     const observer = new MutationObserver(() => {
         const activeFilterButtonEl = subscriptionsPageContainer.querySelector(
-            `.${CLASS_FILTER_BUTTON}[data-active="true"]`
+            `${SELECTOR_FILTER_BUTTON}[data-active="true"]`
         );
 
         if (activeFilterButtonEl) {
-            const contentArr = document.querySelectorAll(YTB_SUBSCRIPTIONS_VIDEO_SELECTOR);
+            const contentArr = document.querySelectorAll(YTB_SELECTOR_SUBSCRIPTION_RENDERER);
             const category = activeFilterButtonEl.getAttribute('data-category-id');
             const forChannelPage = false;
 
             if (category === CATEGORY_ALL) {
-                contentArr.forEach((video) => {
-                    video.style.display = '';
-                });
+                applyDefaultFilter(contentArr);
             } else {
                 applyFilterToContent(contentArr, category, channelCategoryAssigned, forChannelPage);
             }
@@ -139,7 +152,7 @@ chrome.storage.sync.get(
 
         const renderChannelsPageCategoryDropdown = () => {
             // Get all channel blocks
-            const channelBlockElArray = document.querySelectorAll(YTB_CHANNEL_BLOCK_SELECTOR);
+            const channelBlockElArray = document.querySelectorAll(YTB_SELECTOR_CHANNEL_RENDERER);
 
             // If the page doesn't have any channel, skip
             if (!channelBlockElArray.length) return;
@@ -206,7 +219,7 @@ chrome.storage.sync.get(
 
         const renderChannelsPageFilters = () => {
             // Get DOM elements
-            const channelPageEl = document.querySelector(YTB_CHANNEL_PAGE_SELECTOR);
+            const channelPageEl = document.querySelector(YTB_SELECTOR_CHANNEL_PAGE);
 
             // If filters do not exist, do create them...
             if (!channelPageEl.querySelectorAll(`.${CLASS_FILTER_CONTAINER_CHANNEL}`).length) {
@@ -226,18 +239,16 @@ chrome.storage.sync.get(
             }
 
             // Attach filter onclick event
-            const filterButtonsArr = channelPageEl.querySelectorAll(`.${CLASS_FILTER_BUTTON}`);
+            const filterButtonsArr = channelPageEl.querySelectorAll(SELECTOR_FILTER_BUTTON);
 
             filterButtonsArr.forEach((filterButtonEl) => {
                 filterButtonEl.addEventListener('click', () => {
-                    const contentArr = document.querySelectorAll(YTB_CHANNEL_BLOCK_SELECTOR);
+                    const contentArr = document.querySelectorAll(YTB_SELECTOR_CHANNEL_RENDERER);
                     const category = filterButtonEl.getAttribute('data-category-id');
                     const forChannelPage = true;
 
                     if (category === CATEGORY_ALL) {
-                        contentArr.forEach((channel) => {
-                            channel.style.display = '';
-                        });
+                        applyDefaultFilter(contentArr);
                     } else {
                         applyFilterToContent(contentArr, category, channelCategoryAssigned, forChannelPage);
                     }
@@ -251,7 +262,7 @@ chrome.storage.sync.get(
 
         const renderSubscriptionsPageFilters = () => {
             // Get DOM elements
-            const subscriptionsPageContainer = document.querySelector(YTB_SUBSCRIPTIONS_PAGE_SELECTOR);
+            const subscriptionsPageContainer = document.querySelector(YTB_SELECTOR_SUBSCRIPTION_PAGE);
 
             // If filters do not exist, do create them...
             if (!subscriptionsPageContainer.querySelectorAll(`.${CLASS_FILTER_CONTAINER_SUBSCRIPTION}`).length) {
@@ -267,18 +278,16 @@ chrome.storage.sync.get(
             }
 
             // Attach filter onclick event
-            const filterButtonsArr = subscriptionsPageContainer.querySelectorAll(`.${CLASS_FILTER_BUTTON}`);
+            const filterButtonsArr = subscriptionsPageContainer.querySelectorAll(SELECTOR_FILTER_BUTTON);
 
             filterButtonsArr.forEach((filterButtonEl) => {
                 filterButtonEl.addEventListener('click', () => {
-                    const contentArr = document.querySelectorAll(YTB_SUBSCRIPTIONS_VIDEO_SELECTOR);
+                    const contentArr = document.querySelectorAll(YTB_SELECTOR_SUBSCRIPTION_RENDERER);
                     const category = filterButtonEl.getAttribute('data-category-id');
                     const forChannelPage = false;
 
                     if (category === CATEGORY_ALL) {
-                        contentArr.forEach((video) => {
-                            video.style.display = '';
-                        });
+                        applyDefaultFilter(contentArr);
                     } else {
                         applyFilterToContent(contentArr, category, channelCategoryAssigned, forChannelPage);
                     }
