@@ -21,7 +21,7 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
             videoLengthMax: 30, // Default: maximum length 30 minutes
 
             // Subscriptions Categories
-            doCategorizeSubscription: false, // Default: disable categorize subscriptions
+            doCategorizeSubscription: true, // Default: enable categorize subscriptions
             categories: [], // Default: set default categories
             channelCategoryAssigned: {}, // Default: no categories assigned
         });
