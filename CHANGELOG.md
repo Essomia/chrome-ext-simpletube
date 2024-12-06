@@ -9,12 +9,18 @@
 
 ## Versions
 
+v0.6.0:
+
+* **chore**: adding linting and code formating rules
+* **chore**: setup files for github (CONTRIBUTING, issue templates, etc)
+* **chore**: move extension files into src folder
+
 v0.5.0:
 
-- **feat**: contentcategories - add observer to reapply filter on new video loaded for subscriptions.
-- **feat**: contentcategories - reduce repetition on filtering logic.
-- **feat**: contentcategories - add filters on channel page.
-- **feat**: contentcategories - create function for reusable features.
+- **feat**: contentcategorize - add observer to reapply filter on new video loaded for subscriptions.
+- **feat**: contentcategorize - reduce repetition on filtering logic.
+- **feat**: contentcategorize - add filters on channel page.
+- **feat**: contentcategorize - create function for reusable features.
 
 v0.4.0:
 
@@ -24,7 +30,7 @@ v0.4.0:
 
 v0.3.0:
 
-- **feat**: contentcategorize - add handlers to filter videos on the subscription page based on the category filter button clicked.
+- **feat**: contentcategorize - add handlers to filter videos on the subscription page based on clicked filter.
 - **feat**: contentcategorize - add filter container and buttons without handlers to subscriptions page.
 - **fix**: options - limit length for category name.
 - **feat**: contentcategorize - add dropdown to assign category to subscriptions management page.
