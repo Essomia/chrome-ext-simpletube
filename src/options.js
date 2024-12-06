@@ -123,60 +123,69 @@ function renderListCategories(categories) {
 }
 
 /**
- * Event Click: Save Settings
+ * Event Click Settings
  */
-document.getElementById('sptid-settings-save').addEventListener('click', () => {
-    // Get the value of the hide shorts checkbox
+
+// General options
+document.getElementById('sptid-do-hide-shorts').addEventListener('click', () => {
     const hideShorts = document.getElementById('sptid-do-hide-shorts').checked;
 
-    // Get the value of the hide watched checkbox
-    const hideWatched = document.getElementById('sptid-do-hide-watched').checked;
-
-    // Get the value of the filter by length checkbox
-    const fadeByLength = document.getElementById('sptid-do-fade-by-length').checked;
-
-    // Get the selected video length values from the dropdowns
-    const videoLengthMin = parseInt(document.getElementById('sptid-video-length-min').value, 10);
-    const videoLengthMax = parseInt(document.getElementById('sptid-video-length-max').value, 10);
-
-    // Get the value of the filter  subscription by category checkbox
-    const categorizeSubscription = document.getElementById('sptid-do-categorize-subscription').checked;
-
-    // Check if the input is NOT a valid number or a negative
-    if (
-        isNaN(videoLengthMin) ||
-        isNaN(videoLengthMax) ||
-        videoLengthMin < 0 ||
-        videoLengthMax < 0 ||
-        videoLengthMin >= videoLengthMax
-    ) {
-        renderAlertMessage(
-            'Please select valid options for the video length filter (minimum should be less than maximum)!',
-            true
-        );
-
-        return;
-    }
-
-    // Save the settings to Chrome's storage
-    chrome.storage.sync.set(
-        {
-            doHideShorts: hideShorts,
-            doHideWatched: hideWatched,
-            doFadeByLength: fadeByLength,
-            videoLengthMax: videoLengthMax,
-            videoLengthMin: videoLengthMin,
-            doCategorizeSubscription: categorizeSubscription,
-        },
-        () => {
-            renderAlertMessage('Settings updated successfully!');
-        }
-    );
+    chrome.storage.sync.set({ doHideShorts: hideShorts }, () => {
+        renderAlertMessage(`Short videos ${hideShorts ? 'hidden' : 'shown'} successfully!`);
+    });
 });
 
-/**
- * Event Click: Add Category
- */
+document.getElementById('sptid-do-hide-watched').addEventListener('click', () => {
+    const hideWatched = document.getElementById('sptid-do-hide-watched').checked;
+
+    chrome.storage.sync.set({ doHideWatched: hideWatched }, () => {
+        renderAlertMessage(`Watched videos ${hideWatched ? 'hidden' : 'shown'} successfully!`);
+    });
+});
+
+// Fade by length
+document.getElementById('sptid-do-fade-by-length').addEventListener('click', () => {
+    const fadeByLength = document.getElementById('sptid-do-fade-by-length').checked;
+
+    chrome.storage.sync.set({ doFadeByLength: fadeByLength }, () => {
+        renderAlertMessage(`Fade by length ${fadeByLength ? 'enabled' : 'disabled'} successfully!`);
+    });
+});
+
+[document.getElementById('sptid-video-length-min'), document.getElementById('sptid-video-length-max')].forEach(
+    (element) => {
+        element.addEventListener('change', () => {
+            const videoLengthMin = parseInt(document.getElementById('sptid-video-length-min').value, 10);
+            const videoLengthMax = parseInt(document.getElementById('sptid-video-length-max').value, 10);
+
+            if (videoLengthMin >= videoLengthMax) {
+                renderAlertMessage('Minimum should be less than maximum!', true);
+                return;
+            }
+
+            // Save the settings to Chrome's storage
+            chrome.storage.sync.set(
+                {
+                    videoLengthMax: videoLengthMax,
+                    videoLengthMin: videoLengthMin,
+                },
+                () => {
+                    renderAlertMessage('Video length settings updated successfully!');
+                }
+            );
+        });
+    }
+);
+
+// Categorize subscriptions
+document.getElementById('sptid-do-categorize-subscription').addEventListener('click', () => {
+    const categorizeSubscription = document.getElementById('sptid-do-categorize-subscription').checked;
+
+    chrome.storage.sync.set({doCategorizeSubscription: categorizeSubscription}, () => {
+        renderAlertMessage(`Categorize subscriptions ${categorizeSubscription ? 'enabled' : 'disabled'} successfully!`);
+    });
+});
+
 document.getElementById('sptid-category-add').addEventListener('click', () => {
     const categoryName = document.getElementById('sptid-category-name').value.trim();
 
@@ -202,9 +211,7 @@ document.getElementById('sptid-category-add').addEventListener('click', () => {
     }
 });
 
-/**
- * Event Click: Reset Settings
- */
+// Reset the settings to the default values
 document.getElementById('sptid-settings-reset').addEventListener('click', () => {
     // Reset the settings to the default values
     document.getElementById('sptid-do-hide-watched').checked = false;
@@ -236,9 +243,11 @@ document.getElementById('sptid-settings-reset').addEventListener('click', () => 
 });
 
 /**
- * Event OnLoad : Set saved settings
+ * Event OnLoad
  */
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Load the settings from Chrome's storage
     chrome.storage.sync.get(
         [
             'doHideShorts',
@@ -260,14 +269,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     );
 
+    // Load the categories from Chrome's storage
     chrome.storage.sync.get(['categories'], ({ categories }) => {
         renderListCategories(categories);
     });
 });
 
-/**
- * Event OnLoad: Set version from manifest
- */
 document.addEventListener('DOMContentLoaded', () => {
     const versionElement = document.getElementById('sptid-version');
     versionElement.textContent = `v${chrome.runtime.getManifest().version}`;
