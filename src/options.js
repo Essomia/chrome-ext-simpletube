@@ -3,6 +3,10 @@
  * Will run on the options page of the Chrome extension.
  */
 
+/**
+ * Helper Functions
+ */
+
 function renderAlertMessage(message, error = false) {
     const messageElement = document.getElementById('sptid-alert-message');
     messageElement.classList.remove('sptcl-error', 'sptcl-success');

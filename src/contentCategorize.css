@@ -28,7 +28,7 @@
 /* Category Filter Buttons */
 
 .sptcl-channel-filter-container,
-.sptcl-category-filter-container {
+.sptcl-subscription-filter-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

@@ -1,13 +1,17 @@
 /**
- * Chrome Extension Content Script
- * Will run on the YouTube page.
+ * Chrome Extension Content Script.
+ * Will run on all YouTube page.
+ */
+
+/**
+ * Main
  */
 
 chrome.storage.sync.get(
     ['doHideShorts', 'doHideWatched', 'doFadeByLength', 'videoLengthMax', 'videoLengthMin'],
     ({ doHideShorts, doHideWatched, doFadeByLength, videoLengthMax, videoLengthMin }) => {
         /**
-         * General Options
+         * Filters videos
          */
 
         // Hide watched videos (if the option is enabled)
@@ -36,11 +40,8 @@ chrome.storage.sync.get(
             }
         };
 
-        /**
-         * Video Length Filter
-         */
-
-        const filterVideos = () => {
+        // Fade videos based on their length (if the option is enabled)
+        const fadeVideosByLength = () => {
             if (doFadeByLength) {
                 // Select all video elements on the YouTube page
                 const videoElements = document.querySelectorAll('ytd-rich-item-renderer');
@@ -75,18 +76,19 @@ chrome.storage.sync.get(
         };
 
         /**
-         * Initialize filters
+         * Run
          */
 
+        // Initial run of the filters
         hideWatchedVideos();
         hideShortsSections();
-        filterVideos();
+        fadeVideosByLength();
 
-        // Re-apply the filter every 5 seconds to handle dynamic content loading on YouTube
+        // Re-apply the filter every x seconds to handle dynamic content loading on YouTube
         setInterval(() => {
             hideWatchedVideos();
             hideShortsSections();
-            filterVideos();
+            fadeVideosByLength();
         }, 3000);
     }
 );
