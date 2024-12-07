@@ -9,11 +9,21 @@
 
 ## Versions
 
+v0.7.0:
+
+- **feat**: options/contentCategories - set and use an id for category filtering instead of the name
+- **feat**: options - allow user to rename category name and update all references
+- **feat**: options - update save to be on change and not on save button click
+- **fix**: options - ensure alert message is now fixed to the top right corner
+- **fix**: contentCategories - update channel/subscription page selector to correct DOM container
+- **fix**: contentCategories - update constant naming
+- **chore**: refactor comments and functions name
+
 v0.6.0:
 
-* **chore**: adding linting and code formating rules
-* **chore**: setup files for github (CONTRIBUTING, issue templates, etc)
-* **chore**: move extension files into src folder
+- **chore**: adding linting and code formating rules
+- **chore**: setup files for github (CONTRIBUTING, issue templates, etc)
+- **chore**: move extension files into src folder
 
 v0.5.0:
 
