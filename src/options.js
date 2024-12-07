@@ -10,8 +10,6 @@ function renderAlertMessage(message, error = false) {
     messageElement.textContent = message;
     messageElement.classList.add(error ? 'sptcl-error' : 'sptcl-success');
 
-    window.scrollTo({ top: 0 });
-
     // Clear any existing timeout to handle quick clicks
     if (renderAlertMessage.timeoutId) {
         clearTimeout(renderAlertMessage.timeoutId);
@@ -181,7 +179,7 @@ document.getElementById('sptid-do-fade-by-length').addEventListener('click', () 
 document.getElementById('sptid-do-categorize-subscription').addEventListener('click', () => {
     const categorizeSubscription = document.getElementById('sptid-do-categorize-subscription').checked;
 
-    chrome.storage.sync.set({doCategorizeSubscription: categorizeSubscription}, () => {
+    chrome.storage.sync.set({ doCategorizeSubscription: categorizeSubscription }, () => {
         renderAlertMessage(`Categorize subscriptions ${categorizeSubscription ? 'enabled' : 'disabled'} successfully!`);
     });
 });

@@ -63,10 +63,15 @@
 /* Alert Message */
 
 .sptcl-opt-alert-message {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
     display: block;
     padding: 1rem;
-    min-height: 1rem;
+    max-width: 20rem;
     opacity: 0;
+    border-radius: 0.5rem;
+    text-align: right;
 }
 
 .sptcl-opt-alert-message.sptcl-success {
