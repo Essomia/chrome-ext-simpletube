@@ -16,6 +16,14 @@ This Chrome extension allows users to filter YouTube content by video length, ma
 
 > Go to Chrome's extension website and search for 'SimpleTube' extension.
 
+1. Install the extension from the Chrome Web Store.
+2. Click on the extension icon in the Chrome toolbar and select **Options** to configure your preferences.
+
+    ![SimpleTube Icon](src/icons/icon32.png)
+
+3. Configure your preferences for video length, Shorts, watched videos, and subscription categories.
+4. Enjoy a more focused and organized YouTube experience!
+
 ### Usage
 
 Once installed and configured, the extension automatically applies your selected filters on YouTube.
