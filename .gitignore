@@ -9,3 +9,8 @@ logs/
 # IDE/Editor specific
 .vscode/
 .idea/
+
+# Chrome extension specifics
+*.pem
+*.crx
+*.zip
