@@ -9,6 +9,10 @@
 
 ## Versions
 
+v0.7.1:
+
+- **fix**: manifest - remove unused permissions
+
 v0.7.0:
 
 - **feat**: options/contentCategories - set and use an id for category filtering instead of the name
