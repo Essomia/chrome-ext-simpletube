@@ -1,16 +1,19 @@
 # Privacy Policy SimpleTube
 
-Effective Date: 2024-12-08
+Effective Date: 2024-12-10
 
 ---
 
 ### Introduction
 
-SimpleTube is committed to protecting your privacy. This extension is designed to operate entirely within your browser and does not collect, store, or transmit any personal data. Below, we outline how SimpleTube handles your information to ensure transparency and compliance with privacy regulations.
+SimpleTube is committed to protecting your privacy. This extension is designed to operate entirely within your browser
+and does not collect, store, or transmit any personal data. Below, we outline how SimpleTube handles your information
+to ensure transparency and compliance with privacy regulations.
 
 ### Data Collection
 
-SimpleTube does not collect or transmit any personal or identifiable data. All settings and preferences are stored locally on your device using Chrome's storage API.
+SimpleTube does not collect or transmit any personal or identifiable data. All settings and preferences are stored
+locally on your device using Chrome's storage API.
 
 ### Data Usage
 
@@ -26,9 +29,7 @@ No data is shared with external servers or third parties.
 SimpleTube requests only the permissions required to provide its functionality:
 
 1. **Storage:** To save user settings locally.
-2. **Scripting:** To modify YouTube content dynamically (e.g., hiding Shorts or filtering videos).
-3. **Active Tab:** To interact with the active YouTube tab.
-4. **Host Access (`*.youtube.com`):** To apply changes only on YouTube pages.
+2. **Host Access (`*.youtube.com`):** To apply changes only on YouTube pages.
 
 These permissions are strictly used to deliver the intended functionality of the extension.
 
